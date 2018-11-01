@@ -4,6 +4,6 @@
 /ProiectIS-ejb/dist/
 /ProiectIS-war/dist/
 /dist/
-/ProiectIS-ejb/nbproject/private
-/ProiectIS-war/nbproject/private
-/nbproject/private
+/ProiectIS-ejb/nbproject/private/
+/ProiectIS-war/nbproject/private/
+/nbproject/private/
