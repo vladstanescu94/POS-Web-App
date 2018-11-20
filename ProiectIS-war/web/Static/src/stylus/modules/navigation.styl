@@ -30,45 +30,6 @@
     }
 }
 
-.hamburger {
-    padding-left: 0;
-    padding-right: 0;
-
-    &>a {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    &__line {
-        display: block;
-        width: rem(34);
-        height: rem(4);
-        background-color: white;
-        margin: rem(6) auto;
-        transition: transition-custom();
-
-        &.line1 {
-            &.change {
-                -webkit-transform: rotate(-45deg) translate(rem(-6), rem(6)) ;
-                transform: rotate(-45deg) translate(rem(-6), rem(6)) ;
-            }
-        }
-
-        &.line2 {
-            &.change {
-                opacity: 0;
-            }
-        }
-
-        &.line3 {
-            &.change {
-                -webkit-transform: rotate(45deg) translate(rem(-8), rem(-8)) ;
-                transform: rotate(45deg) translate(rem(-8), rem(-8)) ;
-            }
-        }
-    }
-}
-
 .list__item {
     overflow: hidden;
     width: 100%;
