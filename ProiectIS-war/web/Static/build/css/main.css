@@ -204,6 +204,7 @@ body {
   background-color: #fff;
   box-shadow: 0 0 0.5rem 0 #7c7c7c;
   overflow: hidden;
+  overflow-y: scroll;
 }
 .products__list {
   list-style: none;
@@ -330,11 +331,11 @@ body {
   flex-direction: column;
 }
 .subtotal-container {
-  margin-top: 3.125rem;
+  margin-top: 2.5rem;
 }
-@media screen and (max-device-height: 768px) {
+@media screen and (min-device-width: 1920px) {
   .subtotal-container {
-    margin-top: 1.25rem;
+    margin-top: 11.25rem;
   }
 }
 .subtotal__label {
