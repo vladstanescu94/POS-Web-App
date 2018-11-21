@@ -42,15 +42,19 @@ body {
 .wrapper {
   display: flex;
   flex-direction: column;
-  width: 68%;
+  width: 88vw;
+
+  @media screen and (min-device-width: 1920px) {
+    width: 100vw;
+  }
 }
 
 .btn {
-  width: rem(160);
-  height: rem(70);
+  width: 10vw;
+  height: 8.5vh;
   text-align: center;
   text-transform: uppercase;
-  font-size: rem(14);
+  font-size: 1.8vh;
   color: white;
   background-color: $color-2;
   border: none;
@@ -62,18 +66,26 @@ body {
 
   &.-small {
     padding: 0;
-    width: rem(76);
-    height: rem(60);
+    width: 7vw;
+    height: 8vh;
     border: rem(1) solid white;
     font-size: rem(18);
+
+    @media screen and (max-device-height: $tablet) {
+        width: 6.8vw;
+    }
   }
 
   &.-extra {
     padding: 0;
-    width: rem(152);
-    height: rem(60);
+    width: 14vw;
+    height: 8vh;
     border: rem(1) solid white;
     font-size: rem(18);
+
+    @media screen and (max-device-height: $tablet) {
+        width: 13.7vw;
+    }
   }
 }
 
@@ -107,7 +119,7 @@ body {
   padding: 0;
 
   &.-small {
-    padding: rem(28) rem(16);
+    width: 4vw;
     color: white;
     background-color: $color-7;
     font-size: rem(18);
@@ -116,16 +128,16 @@ body {
   }
 
   &.-huge {
-    width: rem(160);
+    width: 10vw;
     color: white;
     background-color: $color-7;
-    font-size: rem(14);
+    font-size: 1.8vh;
   }
 }
 
 .btn-confirm {
   width: 100%;
-  height: rem(60);
+  height: 4vw;
   background-color: $color-8;
   color: white;
   font-size: rem(24);

@@ -36,14 +36,19 @@ body {
 .wrapper {
   display: flex;
   flex-direction: column;
-  width: 68%;
+  width: 88vw;
+}
+@media screen and (min-device-width: 1920px) {
+  .wrapper {
+    width: 100vw;
+  }
 }
 .btn {
-  width: 10rem;
-  height: 4.375rem;
+  width: 10vw;
+  height: 8.5vh;
   text-align: center;
   text-transform: uppercase;
-  font-size: 0.875rem;
+  font-size: 1.8vh;
   color: #fff;
   background-color: #333;
   border: none;
@@ -53,17 +58,27 @@ body {
 }
 .btn.-small {
   padding: 0;
-  width: 4.75rem;
-  height: 3.75rem;
+  width: 7vw;
+  height: 8vh;
   border: 0.0625rem solid #fff;
   font-size: 1.125rem;
 }
+@media screen and (max-device-height: 768px) {
+  .btn.-small {
+    width: 6.8vw;
+  }
+}
 .btn.-extra {
   padding: 0;
-  width: 9.5rem;
-  height: 3.75rem;
+  width: 14vw;
+  height: 8vh;
   border: 0.0625rem solid #fff;
   font-size: 1.125rem;
+}
+@media screen and (max-device-height: 768px) {
+  .btn.-extra {
+    width: 13.7vw;
+  }
 }
 .btn-minus {
   width: 1.25rem;
@@ -93,7 +108,7 @@ body {
   padding: 0;
 }
 .btn-delete.-small {
-  padding: 1.75rem 1rem;
+  width: 4vw;
   color: #fff;
   background-color: #df6060;
   font-size: 1.125rem;
@@ -101,14 +116,14 @@ body {
   border: 0.0625rem solid #fff;
 }
 .btn-delete.-huge {
-  width: 10rem;
+  width: 10vw;
   color: #fff;
   background-color: #df6060;
-  font-size: 0.875rem;
+  font-size: 1.8vh;
 }
 .btn-confirm {
   width: 100%;
-  height: 3.75rem;
+  height: 4vw;
   background-color: #6cc36e;
   color: #fff;
   font-size: 1.5rem;
@@ -183,8 +198,8 @@ body {
 }
 .products__container {
   width: 100%;
-  height: 80vh;
-  max-height: 35rem;
+  height: 78vh;
+  max-height: 78vh;
   padding: 0.875rem 1.125rem;
   background-color: #fff;
   box-shadow: 0 0 0.5rem 0 #7c7c7c;
@@ -260,7 +275,7 @@ body {
 }
 .action {
   display: flex;
-  padding-top: 0.875rem;
+  padding-top: 3vh;
   justify-content: space-between;
   padding-bottom: 0.625rem;
 }
@@ -273,7 +288,7 @@ body {
 .keypad {
   width: 50%;
   height: 90vh;
-  padding: 0.875rem 1.5rem;
+  padding: 0.875rem 1.5vw;
   margin-left: 1rem;
   background-color: #fff;
   box-shadow: 0 0 0.5rem 0 #7c7c7c;
@@ -294,8 +309,8 @@ body {
 .keypad__display {
   width: 100%;
   margin: 0 auto;
-  margin-bottom: 1.375rem;
-  padding: 0.625rem 0.125rem;
+  margin-bottom: 1.8vw;
+  padding: 1vw 0.125rem;
   border: 0.0625rem solid #979797;
   text-align: right;
   font-size: 2rem;
@@ -323,11 +338,11 @@ body {
   }
 }
 .subtotal__label {
-  font-size: 1.125rem;
+  font-size: 1.3vw;
   text-transform: uppercase;
 }
 .subtotal__value {
-  font-size: 1.125rem;
+  font-size: 1.3vw;
   text-transform: uppercase;
 }
 .subtotal__row {
@@ -357,27 +372,27 @@ body {
   opacity: 0.3;
 }
 .discount__label {
-  font-size: 1.125rem;
+  font-size: 1.3vw;
   text-transform: uppercase;
   color: #df6060;
 }
 .discount__value {
-  font-size: 1.125rem;
+  font-size: 1.3vw;
   text-transform: uppercase;
   color: #df6060;
 }
 .total-container {
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
-  padding-bottom: 1.5rem;
+  margin-top: 1.2vw;
+  padding-bottom: 1.6vw;
 }
 .total__label {
-  font-size: 1.5rem;
+  font-size: 1.8vw;
   text-transform: uppercase;
 }
 .total__value {
-  font-size: 1.5rem;
+  font-size: 1.8vw;
   text-transform: uppercase;
 }
 
