@@ -1,6 +1,10 @@
 .subtotal {
     &-container {
-        margin-top: rem(50);
+        margin-top: rem(50); 
+
+        @media screen and (max-device-height: $tablet) {
+            margin-top: rem(20);
+        }
     }
 
     &__label {
@@ -21,6 +25,11 @@
             padding-top: rem(24);
             padding-bottom: rem(22);
             position: relative;
+
+            @media screen and (max-device-height: $tablet) {
+                padding-top: rem(14);
+                padding-bottom: rem(10);
+            }
 
             &::after{
                 content: '';

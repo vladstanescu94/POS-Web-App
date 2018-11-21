@@ -1,21 +1,29 @@
 .keypad {
-    width: rem(392);
-    height: rem(654);
+    width: 50%;
+    height: 90vh;
     padding: rem(14) rem(24);
     margin-left: rem(16);
     background-color: white;
     box-shadow: 0 0 rem(8) 0 rgba(124,124,124,45);
+    overflow: hidden;
+
+    @media screen and (max-device-height: $tablet) {
+        height: 93vh;
+    }
+
     &__form {
+        width: 100%;
         display: flex;
         flex-direction: column;
         padding-top: rem(28);
+        overflow: hidden;
     }
 
     &__display {
-        width: rem(340);
-        height: rem(68);
+        width: 100%;
         margin: 0 auto;
         margin-bottom: rem(22);
+        padding: rem(10) rem(2);
         border: rem(1) solid $color-9;
         text-align: right;
         font-size: rem(32);
@@ -29,6 +37,11 @@
 
 .numbers-container {
     font-size: 0;
+    
+    .row {
+        width: 100%;
+ 
+    }
 }
 
 .functions-container {
