@@ -28,3 +28,19 @@ $('.btn-plus').on('click', function(e) {
  
     $input.val(value);
 });
+
+$('.btn-delete').on('click', function(e) {
+    e.preventDefault();
+    var $this = $(this);
+    var $item = $this.closest('li');
+    
+    $item.remove();
+});
+
+$('.js-delete-all').on('click', function(e) {
+    e.preventDefault();
+    var $this = $(this);
+    var $list = $('.products__list');
+    
+    $list.empty();
+});
