@@ -22,14 +22,10 @@ body {
 }
 .main {
   display: flex;
-  width: 100%;
-  height: 100%;
   margin-left: 10rem;
   padding: 1.875rem 1.25rem;
 }
 .wrapper {
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -45,6 +41,18 @@ body {
 }
 .btn:focus {
   outline: 0.0625rem solid rgba(0,0,0,0.2);
+}
+.btn.-small {
+  width: 5.75rem;
+  height: 3.75rem;
+  border: 0.0625rem solid #fff;
+  font-size: 1.125rem;
+}
+.btn.-extra {
+  width: 11.5rem;
+  height: 3.75rem;
+  border: 0.0625rem solid #fff;
+  font-size: 1.125rem;
 }
 .btn-minus {
   max-width: 1.25rem;
@@ -74,11 +82,36 @@ body {
   color: #df6060;
   padding: 0;
 }
+.btn-delete.-small {
+  width: 100%;
+  max-width: 4.125rem;
+  height: 100%;
+  min-height: 3.75rem;
+  color: #fff;
+  background-color: #df6060;
+  font-size: 1.125rem;
+  border: 0.0625rem solid #fff;
+}
 .btn-delete.-huge {
   max-width: 8.75rem;
   color: #fff;
   background-color: #df6060;
   font-size: 0.875rem;
+}
+.btn-confirm {
+  width: 100%;
+  max-width: 21.875rem;
+  height: 100%;
+  max-height: 3.875rem;
+  background-color: #6cc36e;
+  color: #fff;
+  font-size: 1.5rem;
+}
+.btn-confirm.-extra {
+  max-width: 4.125rem;
+  min-height: 11.25rem;
+  border: 0.0625rem solid #fff;
+  font-size: 1.125rem;
 }
 .header {
   display: flex;
@@ -229,6 +262,94 @@ body {
 }
 .action .btn:last-child {
   margin-right: 0;
+}
+.keypad {
+  width: 24.5rem;
+  height: 40.875rem;
+  padding: 0.875rem 1.5rem;
+  margin-left: 1rem;
+  background-color: #fff;
+  box-shadow: 0 0 0.5rem 0 #7c7c7c;
+}
+.keypad__form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.75rem;
+}
+.keypad__display {
+  width: 21.25rem;
+  height: 4.25rem;
+  margin: 0 auto;
+  margin-bottom: 1.375rem;
+  border: 0.0625rem solid #979797;
+  text-align: right;
+  font-size: 2rem;
+}
+.keypad__container {
+  display: flex;
+  justify-content: center;
+}
+.numbers-container {
+  font-size: 0;
+}
+.functions-container {
+  display: flex;
+  flex-direction: column;
+}
+.subtotal-container {
+  margin-top: 3.125rem;
+}
+.subtotal__label {
+  font-size: 1.125rem;
+  text-transform: uppercase;
+}
+.subtotal__value {
+  font-size: 1.125rem;
+  text-transform: uppercase;
+}
+.subtotal__row {
+  display: flex;
+  justify-content: space-between;
+}
+.subtotal__row:last-child {
+  padding-top: 1.5rem;
+  padding-bottom: 1.375rem;
+  position: relative;
+}
+.subtotal__row:last-child::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.0625rem;
+  background-color: #979797;
+  opacity: 0.3;
+}
+.discount__label {
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  color: #df6060;
+}
+.discount__value {
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  color: #df6060;
+}
+.total-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-bottom: 1.5rem;
+}
+.total__label {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+.total__value {
+  font-size: 1.5rem;
+  text-transform: uppercase;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,37 @@
+.keypad {
+    width: rem(392);
+    height: rem(654);
+    padding: rem(14) rem(24);
+    margin-left: rem(16);
+    background-color: white;
+    box-shadow: 0 0 rem(8) 0 rgba(124,124,124,45);
+    &__form {
+        display: flex;
+        flex-direction: column;
+        padding-top: rem(28);
+    }
+
+    &__display {
+        width: rem(340);
+        height: rem(68);
+        margin: 0 auto;
+        margin-bottom: rem(22);
+        border: rem(1) solid $color-9;
+        text-align: right;
+        font-size: rem(32);
+    }
+
+    &__container {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.numbers-container {
+    font-size: 0;
+}
+
+.functions-container {
+    display: flex;
+    flex-direction: column;
+}
