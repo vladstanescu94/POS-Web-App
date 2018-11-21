@@ -307,6 +307,11 @@ body {
   padding-top: 1.75rem;
   overflow: hidden;
 }
+@media screen and (min-height: 1000px) {
+  .keypad__form {
+    padding-top: 4.75rem;
+  }
+}
 .keypad__display {
   width: 100%;
   margin: 0 auto;
@@ -315,6 +320,11 @@ body {
   border: 0.0625rem solid #979797;
   text-align: right;
   font-size: 2rem;
+}
+@media screen and (min-height: 1000px) {
+  .keypad__display {
+    margin-bottom: 3.8vw;
+  }
 }
 .keypad__container {
   display: flex;
@@ -335,7 +345,7 @@ body {
 }
 @media screen and (min-height: 1000px) {
   .subtotal-container {
-    margin-top: 11.25rem;
+    margin-top: 4.25rem;
   }
 }
 .subtotal__label {
