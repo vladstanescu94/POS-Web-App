@@ -333,7 +333,7 @@ body {
 .subtotal-container {
   margin-top: 2.5rem;
 }
-@media screen and (min-device-width: 1920px) {
+@media screen and (min-height: 1000px) {
   .subtotal-container {
     margin-top: 11.25rem;
   }
