@@ -9,3 +9,7 @@
 /nbproject/private/
 /ProiectIS-war/web/Static/node_modules/
 /ProiectIS-war/web/Static/node_modules
+/ProiectIS-ejb/nbproject/
+/ProiectIS-war/nbproject/
+/nbproject/
+build.xml
