@@ -1,0 +1,63 @@
+.subtotal {
+    &-container {
+        margin-top: rem(40); 
+
+        
+        @media screen and (min-height: 1000px ) {
+             margin-top: rem(68);
+        }
+        
+    }
+
+    &__label {
+        font-size: 1.3vw;
+        text-transform: uppercase;
+    }
+
+    &__value {
+        font-size: 1.3vw;
+        text-transform: uppercase;
+    }
+
+    &__row {
+        display: flex;
+        justify-content: space-between;
+
+        &:last-child {
+            padding-top: rem(24);
+            padding-bottom: rem(22);
+            position: relative;
+
+            @media screen and (max-device-height: $tablet) {
+                padding-top: rem(14);
+                padding-bottom: rem(10);
+            }
+
+            &::after{
+                content: '';
+                display: block;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: rem(1);
+                background-color: $color-9;
+                opacity: 0.3;
+            }
+        }
+    }
+}
+
+.discount {
+    &__label {
+        font-size: 1.3vw;
+        text-transform: uppercase;
+        color: $color-7;
+    }
+
+    &__value {
+        font-size: 1.3vw;
+        text-transform: uppercase;
+        color: $color-7;
+    }
+}

@@ -1,0 +1,152 @@
+/* General Global CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: rem(16);
+  font-weight: normal;
+}
+
+.app-container {
+  height: 100vh;
+  background-color: $color-1;
+}
+
+.main {
+  margin-left: rem(160);
+  padding: rem(30) rem(20);
+  
+
+  @media screen and (max-device-height: $tablet) {
+    padding-top: rem(20);
+    padding-bottom: 0;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 88vw;
+
+  @media screen and (min-device-width: 1920px) {
+    width: 100vw;
+  }
+}
+
+.btn {
+  width: 10vw;
+  height: 8.5vh;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.8vh;
+  color: white;
+  background-color: $color-2;
+  border: none;
+
+
+  &:focus {
+    outline: rem(1) solid rgba(0,0,0,0.2);
+  }
+
+  &.-small {
+    padding: 0;
+    width: 7vw;
+    height: 8vh;
+    border: rem(1) solid white;
+    font-size: rem(18);
+
+    @media screen and (max-device-height: $tablet) {
+        width: 6.8vw;
+    }
+  }
+
+  &.-extra {
+    padding: 0;
+    width: 14vw;
+    height: 8vh;
+    border: rem(1) solid white;
+    font-size: rem(18);
+
+    @media screen and (max-device-height: $tablet) {
+        width: 13.7vw;
+    }
+  }
+}
+
+.btn-minus {
+  width: rem(20);
+  height: rem(20);
+  color: $color-9;
+  background: none;
+  border: none;
+  font-size: rem(16);
+  margin-right: rem(4);
+  padding: 0;
+}
+
+.btn-plus {
+  max-width: rem(20);
+  max-height: rem(20);
+  color: $color-9;
+  background: none;
+  border: none;
+  font-size: rem(16);
+  margin-left: rem(4);
+  padding: 0;
+}
+
+.btn-delete {
+  width: auto;
+  font-size: rem(38);
+  background: none;
+  color: $color-7;
+  padding: 0;
+
+  &.-small {
+    width: 4vw;
+    color: white;
+    background-color: $color-7;
+    font-size: rem(18);
+    line-height: 0;
+    border: rem(1) solid white;
+  }
+
+  &.-huge {
+    width: 10vw;
+    color: white;
+    background-color: $color-7;
+    font-size: 1.8vh;
+  }
+}
+
+.btn-confirm {
+  width: 100%;
+  height: 4vw;
+  background-color: $color-8;
+  color: white;
+  font-size: rem(24);
+
+  &.-extra {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: rem(1) solid white;
+    font-size: rem(18);
+  }
+}

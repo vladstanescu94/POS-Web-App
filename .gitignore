@@ -6,8 +6,10 @@
 /dist/
 /ProiectIS-ejb/nbproject/private/
 /ProiectIS-war/nbproject/private/
+/nbproject/private/
+/ProiectIS-war/web/Static/node_modules/
+/ProiectIS-war/web/Static/node_modules
 /ProiectIS-ejb/nbproject/
 /ProiectIS-war/nbproject/
-/nbproject/private/
 /nbproject/
 build.xml
