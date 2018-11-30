@@ -1,10 +1,10 @@
 create schema ROOT
 ;
-
 create table COUPON
 (
 	ID BIGINT not null
-		primary key,
+		primary key GENERATED ALWAYS AS IDENTITY
+                (START WITH 1, INCREMENT BY 1),
 	CODE VARCHAR(10) not null
 		unique,
 	QUANTITY_ISSUED INTEGER not null,
@@ -27,7 +27,8 @@ create table PRODUCT
 create table SELLER
 (
 	ID BIGINT not null
-		primary key,
+		primary key GENERATED ALWAYS AS IDENTITY
+                (START WITH 1, INCREMENT BY 1),
 	FIRST_NAME VARCHAR(30) not null,
 	LAST_NAME VARCHAR(30) not null,
 	PICTURE BLOB,
@@ -38,7 +39,8 @@ create table SELLER
 create table INVOICE
 (
 	ID BIGINT not null
-		primary key,
+		primary key GENERATED ALWAYS AS IDENTITY
+                (START WITH 1, INCREMENT BY 1),
 	SELLER_ID BIGINT not null
 		constraint INVOICE_SELLER_ID_FK
 			references SELLER,

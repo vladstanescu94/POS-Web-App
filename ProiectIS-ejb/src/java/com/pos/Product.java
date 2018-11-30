@@ -37,10 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price")})
 public class Product implements Serializable {
 
-    @Lob
-    @Column(name = "IMAGE")
-    private Serializable image;
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -60,6 +56,9 @@ public class Product implements Serializable {
     @NotNull
     @Column(name = "PRICE")
     private double price;
+    @Lob
+    @Column(name = "IMAGE")
+    private Serializable image;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Collection<InvoiceItems> invoiceItemsCollection;
 
@@ -109,6 +108,14 @@ public class Product implements Serializable {
         this.price = price;
     }
 
+    public Serializable getImage() {
+        return image;
+    }
+
+    public void setImage(Serializable image) {
+        this.image = image;
+    }
+
     @XmlTransient
     public Collection<InvoiceItems> getInvoiceItemsCollection() {
         return invoiceItemsCollection;
@@ -141,14 +148,6 @@ public class Product implements Serializable {
     @Override
     public String toString() {
         return "com.pos.Product[ id=" + id + " ]";
-    }
-
-    public Serializable getImage() {
-        return image;
-    }
-
-    public void setImage(Serializable image) {
-        this.image = image;
     }
     
 }
