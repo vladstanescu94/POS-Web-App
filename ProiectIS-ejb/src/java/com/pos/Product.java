@@ -12,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -35,6 +36,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Product.findByStock", query = "SELECT p FROM Product p WHERE p.stock = :stock")
     , @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price")})
 public class Product implements Serializable {
+
+    @Lob
+    @Column(name = "IMAGE")
+    private Serializable image;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -136,6 +141,14 @@ public class Product implements Serializable {
     @Override
     public String toString() {
         return "com.pos.Product[ id=" + id + " ]";
+    }
+
+    public Serializable getImage() {
+        return image;
+    }
+
+    public void setImage(Serializable image) {
+        this.image = image;
     }
     
 }

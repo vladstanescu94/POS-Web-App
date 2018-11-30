@@ -19,7 +19,8 @@ create table PRODUCT
 		primary key,
 	NAME VARCHAR(100) not null,
 	STOCK INTEGER default 0 not null,
-	PRICE DOUBLE default 0 not null
+	PRICE DOUBLE default 0 not null,
+	IMAGE BLOB
 )
 ;
 
