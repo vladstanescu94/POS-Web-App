@@ -44,3 +44,26 @@ $('.js-delete-all').on('click', function(e) {
     
     $list.empty();
 });
+
+$('#btn-search').on('click', function(e) {
+    $searchbar=$('.keypad__display');
+    getProduct($searchbar.val());
+    $searchbar.val('');
+});
+
+$('.keypad__display').keypress(function(e) {
+    if(e.which == 13) {
+        getProduct($(this).val());
+        e.preventDefault();
+        $(this).val('');
+    }
+    else if(e.which<48||e.which>57)
+    {   
+        e.preventDefault();
+        alert('Only numbers are allowed');
+    }
+});
+
+function getProduct(code){
+    alert(code);
+};
