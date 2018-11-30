@@ -11,5 +11,7 @@
 /ProiectIS-war/web/Static/node_modules
 /ProiectIS-ejb/nbproject/
 /ProiectIS-war/nbproject/
+/ProiectIS-ejb/nbproject
+/ProiectIS-war/nbproject
 /nbproject/
 build.xml
