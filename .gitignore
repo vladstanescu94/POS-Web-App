@@ -1,18 +1,25 @@
-/ProiectIS-ejb/build/
-/ProiectIS-war/build/
-/build/
-/ProiectIS-ejb/dist/
-/ProiectIS-war/dist/
-/dist/
-/ProiectIS-ejb/nbproject/private/
-/ProiectIS-war/nbproject/private/
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
 /nbproject/private/
-/ProiectIS-war/web/Static/node_modules/
-/ProiectIS-war/web/Static/node_modules
-/ProiectIS-ejb/nbproject/
-/ProiectIS-war/nbproject/
-/ProiectIS-ejb/nbproject
-/ProiectIS-war/nbproject
-/nbproject/
-/nbproject
-build.xml
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/

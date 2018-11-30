@@ -1,0 +1,72 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: rem(160);
+    height 100%;
+    padding-bottom: rem(60);
+    position: fixed;
+    top: 0;
+    left 0;
+    z-index: 1;
+    background-color: $color-2;
+}
+
+.user {
+    &__data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__icon {
+        width: rem(80);
+        height: rem(80);
+        margin: 0 auto;
+        margin-bottom: rem(14);
+        border-radius: 50%;
+        background-image: url('../../src/assets/images/user.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    &__name {
+        font-size: rem(14);
+        color: rgba(255,255,255,0.8);
+        text-transform: uppercase;
+    }
+}
+
+.navigation {
+    &__list {
+        list-style: none;
+        padding: rem(20) rem(10);
+    }
+}
+
+.list__item {
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+}
+
+.item__link {
+    display: block;
+    padding: rem(20) rem(4);
+    margin-bottom: rem(30);
+    width: 100%;
+    height 100%;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: rem(60);
+    transition: transition-custom($property = color);
+
+    &:hover {
+        color: white;
+    }
+}
+
+.item__title {
+    font-size: rem(14);
+}
