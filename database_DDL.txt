@@ -1,0 +1,66 @@
+create schema ROOT
+;
+
+create table COUPON
+(
+	ID BIGINT not null
+		primary key,
+	CODE VARCHAR(10) not null
+		unique,
+	QUANTITY_ISSUED INTEGER not null,
+	QUANTITY_USED INTEGER default 0,
+	DISCOUNT_PERCENTAGE INTEGER default 0 not null
+)
+;
+
+create table PRODUCT
+(
+	ID BIGINT not null
+		primary key,
+	NAME VARCHAR(100) not null,
+	STOCK INTEGER default 0 not null,
+	PRICE DOUBLE default 0 not null
+)
+;
+
+create table SELLER
+(
+	ID BIGINT not null
+		primary key,
+	FIRST_NAME VARCHAR(30) not null,
+	LAST_NAME VARCHAR(30) not null,
+	PICTURE BLOB,
+	IS_ADMIN BOOLEAN default false not null
+)
+;
+
+create table INVOICE
+(
+	ID BIGINT not null
+		primary key,
+	SELLER_ID BIGINT not null
+		constraint INVOICE_SELLER_ID_FK
+			references SELLER,
+	PURCHASE_DATE DATE not null,
+	INITIAL_PRICE DECIMAL(7,2) not null,
+	COUPON_ID BIGINT
+		constraint INVOICE_COUPON_ID_FK
+			references COUPON,
+	DISCOUNTED_PRICE DECIMAL(7,2)
+)
+;
+
+create table INVOICE_ITEMS
+(
+	INVOICE_ID BIGINT not null
+		constraint INVOICE_ITEMS_INVOICE_ID_FK
+			references INVOICE,
+	PRODUCT_ID BIGINT not null
+		constraint INVOICE_ITEMS_PRODUCT_ID_FK
+			references PRODUCT,
+	QUANTITY INTEGER not null,
+	constraint INVOICE_ITEMS_PK
+		primary key (INVOICE_ID, PRODUCT_ID)
+)
+;
+

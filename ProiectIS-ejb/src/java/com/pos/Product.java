@@ -6,26 +6,33 @@
 package com.pos;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author psa97
  */
 @Entity
+@Table(name = "PRODUCT")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")
     , @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p WHERE p.id = :id")
     , @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name")
-    , @NamedQuery(name = "Product.findByQuantity", query = "SELECT p FROM Product p WHERE p.quantity = :quantity")
+    , @NamedQuery(name = "Product.findByStock", query = "SELECT p FROM Product p WHERE p.stock = :stock")
     , @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price")})
 public class Product implements Serializable {
 
@@ -33,17 +40,23 @@ public class Product implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @Column(name = "ID")
     private Long id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
+    @Column(name = "NAME")
     private String name;
     @Basic(optional = false)
     @NotNull
-    private int quantity;
+    @Column(name = "STOCK")
+    private int stock;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "PRICE")
     private double price;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private Collection<InvoiceItems> invoiceItemsCollection;
 
     public Product() {
     }
@@ -52,10 +65,10 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public Product(Long id, String name, int quantity, double price) {
+    public Product(Long id, String name, int stock, double price) {
         this.id = id;
         this.name = name;
-        this.quantity = quantity;
+        this.stock = stock;
         this.price = price;
     }
 
@@ -75,12 +88,12 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getStock() {
+        return stock;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public double getPrice() {
@@ -89,6 +102,15 @@ public class Product implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @XmlTransient
+    public Collection<InvoiceItems> getInvoiceItemsCollection() {
+        return invoiceItemsCollection;
+    }
+
+    public void setInvoiceItemsCollection(Collection<InvoiceItems> invoiceItemsCollection) {
+        this.invoiceItemsCollection = invoiceItemsCollection;
     }
 
     @Override

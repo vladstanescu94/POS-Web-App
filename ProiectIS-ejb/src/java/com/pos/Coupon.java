@@ -8,11 +8,9 @@ package com.pos;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,15 +25,16 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author psa97
  */
 @Entity
-@Table(name = "SELLER")
+@Table(name = "COUPON")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Seller.findAll", query = "SELECT s FROM Seller s")
-    , @NamedQuery(name = "Seller.findById", query = "SELECT s FROM Seller s WHERE s.id = :id")
-    , @NamedQuery(name = "Seller.findByFirstName", query = "SELECT s FROM Seller s WHERE s.firstName = :firstName")
-    , @NamedQuery(name = "Seller.findByLastName", query = "SELECT s FROM Seller s WHERE s.lastName = :lastName")
-    , @NamedQuery(name = "Seller.findByIsAdmin", query = "SELECT s FROM Seller s WHERE s.isAdmin = :isAdmin")})
-public class Seller implements Serializable {
+    @NamedQuery(name = "Coupon.findAll", query = "SELECT c FROM Coupon c")
+    , @NamedQuery(name = "Coupon.findById", query = "SELECT c FROM Coupon c WHERE c.id = :id")
+    , @NamedQuery(name = "Coupon.findByCode", query = "SELECT c FROM Coupon c WHERE c.code = :code")
+    , @NamedQuery(name = "Coupon.findByQuantityIssued", query = "SELECT c FROM Coupon c WHERE c.quantityIssued = :quantityIssued")
+    , @NamedQuery(name = "Coupon.findByQuantityUsed", query = "SELECT c FROM Coupon c WHERE c.quantityUsed = :quantityUsed")
+    , @NamedQuery(name = "Coupon.findByDiscountPercentage", query = "SELECT c FROM Coupon c WHERE c.discountPercentage = :discountPercentage")})
+public class Coupon implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,36 +44,34 @@ public class Seller implements Serializable {
     private Long id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "FIRST_NAME")
-    private String firstName;
+    @Size(min = 1, max = 10)
+    @Column(name = "CODE")
+    private String code;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "LAST_NAME")
-    private String lastName;
-    @Lob
-    @Column(name = "PICTURE")
-    private Serializable picture;
+    @Column(name = "QUANTITY_ISSUED")
+    private int quantityIssued;
+    @Column(name = "QUANTITY_USED")
+    private Integer quantityUsed;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "IS_ADMIN")
-    private Boolean isAdmin;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sellerId")
+    @Column(name = "DISCOUNT_PERCENTAGE")
+    private int discountPercentage;
+    @OneToMany(mappedBy = "couponId")
     private Collection<Invoice> invoiceCollection;
 
-    public Seller() {
+    public Coupon() {
     }
 
-    public Seller(Long id) {
+    public Coupon(Long id) {
         this.id = id;
     }
 
-    public Seller(Long id, String firstName, String lastName, Boolean isAdmin) {
+    public Coupon(Long id, String code, int quantityIssued, int discountPercentage) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.isAdmin = isAdmin;
+        this.code = code;
+        this.quantityIssued = quantityIssued;
+        this.discountPercentage = discountPercentage;
     }
 
     public Long getId() {
@@ -85,36 +82,36 @@ public class Seller implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getCode() {
+        return code;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getLastName() {
-        return lastName;
+    public int getQuantityIssued() {
+        return quantityIssued;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setQuantityIssued(int quantityIssued) {
+        this.quantityIssued = quantityIssued;
     }
 
-    public Serializable getPicture() {
-        return picture;
+    public Integer getQuantityUsed() {
+        return quantityUsed;
     }
 
-    public void setPicture(Serializable picture) {
-        this.picture = picture;
+    public void setQuantityUsed(Integer quantityUsed) {
+        this.quantityUsed = quantityUsed;
     }
 
-    public Boolean getIsAdmin() {
-        return isAdmin;
+    public int getDiscountPercentage() {
+        return discountPercentage;
     }
 
-    public void setIsAdmin(Boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setDiscountPercentage(int discountPercentage) {
+        this.discountPercentage = discountPercentage;
     }
 
     @XmlTransient
@@ -136,10 +133,10 @@ public class Seller implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Seller)) {
+        if (!(object instanceof Coupon)) {
             return false;
         }
-        Seller other = (Seller) object;
+        Coupon other = (Coupon) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -148,7 +145,7 @@ public class Seller implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pos.Seller[ id=" + id + " ]";
+        return "com.pos.Coupon[ id=" + id + " ]";
     }
     
 }
