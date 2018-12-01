@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
         , @NamedQuery(name = "Seller.findById", query = "SELECT s FROM Seller s WHERE s.id = :id")
         , @NamedQuery(name = "Seller.findByFirstName", query = "SELECT s FROM Seller s WHERE s.firstName = :firstName")
         , @NamedQuery(name = "Seller.findByLastName", query = "SELECT s FROM Seller s WHERE s.lastName = :lastName")
+        , @NamedQuery(name="Seller.findByPassword",query = "SELECT s FROM Seller s where s.password=:password")
         , @NamedQuery(name = "Seller.findByIsAdmin", query = "SELECT s FROM Seller s WHERE s.isAdmin = :isAdmin")})
 public class Seller implements Serializable {
 
@@ -50,6 +51,11 @@ public class Seller implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "LAST_NAME")
     private String lastName;
+    @Basic(optional=false)
+    @NotNull
+    @Size(max=30,min=1)
+    @Column(name="PASSWORD")
+    private String password;
     @Lob
     @Column(name = "PICTURE")
     private Serializable picture;

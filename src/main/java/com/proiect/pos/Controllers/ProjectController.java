@@ -1,4 +1,4 @@
-package com.proiect.pos;
+package com.proiect.pos.Controllers;
 
 public class ProjectController   {
 }

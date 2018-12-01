@@ -1,4 +1,4 @@
-package com.proiect.pos;
+package com.proiect.pos.Controllers;
 
 import com.proiect.pos.Entities.Product;
 import com.proiect.pos.Repositories.ProductRepository;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-public class ProjectRestController {
+public class RestProjectController {
 
 
     @Autowired
