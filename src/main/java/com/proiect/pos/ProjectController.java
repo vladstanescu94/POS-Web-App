@@ -18,10 +18,10 @@ public class ProjectController {
     ProductRepository productRepository;
 
     @RequestMapping(path="/getProductID",method = RequestMethod.GET)
-    public Product getProductId(Long cod)
+    public Product getProductId(Long id)
     {
-        System.out.println("COD VALUE IS:"+cod);
-        Optional<Product> productOptional=productRepository.findById(cod);
+        System.out.println("COD VALUE IS:"+id);
+        Optional<Product> productOptional=productRepository.findById(id);
         Product product=null;
         if(productOptional.isPresent()){
             product=productOptional.get();
