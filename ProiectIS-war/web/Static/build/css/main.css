@@ -152,6 +152,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+}
+.user__data:hover {
+  cursor: pointer;
 }
 .user__icon {
   width: 5rem;
@@ -405,6 +409,120 @@ body {
 .total__value {
   font-size: 1.8vw;
   text-transform: uppercase;
+}
+.login__image {
+  width: 8.75rem;
+  height: 8.75rem;
+  margin: 1.875rem auto;
+  margin-bottom: 0;
+  border-radius: 50%;
+  background-image: url("../../src/assets/images/user.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.login__container {
+  width: 60%;
+  margin: 0 auto;
+  padding: 0.625rem;
+}
+.login__form {
+  position: relative;
+  background-color: #fefefe;
+  margin: 0.3125rem auto; /* 15% from the top and centered */
+  border: 0.0625rem solid #888;
+  width: 60%; /* Could be more or less, depending on screen size */
+}
+.login__input {
+  width: 100%;
+  height: 6vh;
+  margin-top: 1.125rem;
+  margin-bottom: 1.125rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.login__check {
+  margin-top: 1.25rem;
+  font-size: 1.125rem;
+}
+.login__footer {
+  background-color: #f4f4f4;
+}
+.close {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0.625rem;
+  width: 1.875rem;
+  height: 1.875rem;
+  cursor: pointer;
+  font-size: 2.375rem;
+}
+.psw {
+  float: right;
+  margin-top: 1.25rem;
+  text-transform: uppercase;
+}
+.psw a {
+  text-decoration: none;
+  color: #df6060;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000;
+  background-color: rgba(0,0,0,0.4);
+  padding-top: 3.75rem;
+}
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s;
+}
+@-webkit-keyframes animatezoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+@-moz-keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@-o-keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
