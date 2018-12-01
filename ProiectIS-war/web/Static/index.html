@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>POS Static Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="build/css/main.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="header">
+            <nav class="navigation">
+                <ul class="navigation__list">
+                    <li class="list__item">
+                        <a href="#" class="item__link">
+                            <i class="item__icon fas fa-chart-bar"></i>
+                            <p class="item__title">Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="#" class="item__link">
+                            <i class="item__icon fas fa-shopping-basket"></i>
+                            <p class="item__title">New Sale</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="user__data" onclick="document.getElementById('modal').style.display='block'">
+                <div class="user__icon"></div>
+                <p class="user__name">Vlad</p>
+            </div>
+
+        </header>
+        <div class="main">
+            <div class="container">
+                <div class="wrapper">
+                    <div class="products__container">
+                        <ul class="products__list">
+                            <li class="product">
+                                <img src="./src/assets/images/ps4.jpg" alt="Product PS4" class="product__image">
+                                <div class="product__data">
+                                    <h2 class="product__title">Consola Play Station 4 PRO</h2>
+                                    <h4 class="product__code">Cod Produs: 1234</h4>
+                                </div>
+                                <div class="product__quantity">
+                                    <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
+                                    <input class="quantity__input" type="text" name="quantity" value="1">
+                                    <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
+                                </div>
+                                <div class="product__price">
+                                    <p class="price__label">Price</p>
+                                    <p class="price__value">1899 RON</p>
+                                </div>
+                                <button class="btn btn-delete far fa-trash-alt"></button>
+                            </li>
+                            <li class="product">
+                                <img src="./src/assets/images/ps4.jpg" alt="Product PS4" class="product__image">
+                                <div class="product__data">
+                                    <h2 class="product__title">Consola Play Station 4 PRO</h2>
+                                    <h4 class="product__code">Cod Produs: 1234</h4>
+                                </div>
+                                <div class="product__quantity">
+                                    <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
+                                    <input class="quantity__input" type="text" name="quantity" value="1">
+                                    <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
+                                </div>
+                                <div class="product__price">
+                                    <p class="price__label">Price</p>
+                                    <p class="price__value">1899 RON</p>
+                                </div>
+                                <button class="btn btn-delete far fa-trash-alt"></button>
+                            </li>
+                            <li class="product">
+                                <img src="./src/assets/images/ps4.jpg" alt="Product PS4" class="product__image">
+                                <div class="product__data">
+                                    <h2 class="product__title">Consola Play Station 4 PRO</h2>
+                                    <h4 class="product__code">Cod Produs: 1234</h4>
+                                </div>
+                                <div class="product__quantity">
+                                    <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
+                                    <input class="quantity__input" type="text" name="quantity" value="1">
+                                    <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
+                                </div>
+                                <div class="product__price">
+                                    <p class="price__label">Price</p>
+                                    <p class="price__value">1899 RON</p>
+                                </div>
+                                <button class="btn btn-delete far fa-trash-alt"></button>
+                            </li>
+                            <li class="product">
+                                <img src="./src/assets/images/ps4.jpg" alt="Product PS4" class="product__image">
+                                <div class="product__data">
+                                    <h2 class="product__title">Consola Play Station 4 PRO</h2>
+                                    <h4 class="product__code">Cod Produs: 1234</h4>
+                                </div>
+                                <div class="product__quantity">
+                                    <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
+                                    <input class="quantity__input" type="text" name="quantity" value="1">
+                                    <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
+                                </div>
+                                <div class="product__price">
+                                    <p class="price__label">Price</p>
+                                    <p class="price__value">1899 RON</p>
+                                </div>
+                                <button class="btn btn-delete far fa-trash-alt"></button>
+                            </li>
+                            <li class="product">
+                                <img src="./src/assets/images/ps4.jpg" alt="Product PS4" class="product__image">
+                                <div class="product__data">
+                                    <h2 class="product__title">Consola Play Station 4 PRO</h2>
+                                    <h4 class="product__code">Cod Produs: 1234</h4>
+                                </div>
+                                <div class="product__quantity">
+                                    <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
+                                    <input class="quantity__input" type="text" name="quantity" value="1">
+                                    <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
+                                </div>
+                                <div class="product__price">
+                                    <p class="price__label">Price</p>
+                                    <p class="price__value">1899 RON</p>
+                                </div>
+                                <button class="btn btn-delete far fa-trash-alt"></button>
+                            </li>
+                            <li class="product">
+                                <img src="./src/assets/images/ps4.jpg" alt="Product PS4" class="product__image">
+                                <div class="product__data">
+                                    <h2 class="product__title">Consola Play Station 4 PRO</h2>
+                                    <h4 class="product__code">Cod Produs: 1234</h4>
+                                </div>
+                                <div class="product__quantity">
+                                    <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
+                                    <input class="quantity__input" type="text" name="quantity" value="1">
+                                    <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
+                                </div>
+                                <div class="product__price">
+                                    <p class="price__label">Price</p>
+                                    <p class="price__value">1899 RON</p>
+                                </div>
+                                <button class="btn btn-delete far fa-trash-alt"></button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="action">
+                        <button class="btn" id="btn-promotions">Promotions</button>
+                        <button class="btn" id="btn-coupons">Coupons</button>
+                        <button class="btn" id="btn-drawer">Open Drawer</button>
+                        <button class="btn" id="btn-cancel">Cancel Bill</button>
+                        <button class="btn btn-delete -huge js-delete-all" id="btn-delete-all">Delete All</button>
+                    </div>
+                </div>
+                <div class="keypad">
+                    <form action="" class="keypad__form">
+                        <input class="keypad__display" type="text" name="keypad-display">
+                        <div class="keypad__container">
+                            <div class="numbers-container">
+                                <div class="row">
+                                    <button class="btn -small">7</button>
+                                    <button class="btn -small">8</button>
+                                    <button class="btn -small">9</button>
+                                </div>
+                                <div class="row">
+                                    <button class="btn -small">4</button>
+                                    <button class="btn -small">5</button>
+                                    <button class="btn -small">6</button>
+                                </div>
+                                <div class="row">
+                                    <button class="btn -small">1</button>
+                                    <button class="btn -small">2</button>
+                                    <button class="btn -small">3</button>
+                                </div>
+                                <div class="row">
+                                    <button class="btn -extra">0</button>
+                                    <button class="btn -small">.</button>
+                                </div>
+                            </div>
+                            <div class="functions-container">
+                                <button class="btn btn-delete -small">Del</button>
+                                <button type="submit" class="btn btn-confirm -extra">Ent</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="subtotal-container">
+                        <div class="subtotal__row">
+                            <p class="subtotal__label">Subtotal</p>
+                            <p class="subtotal__value">200000 RON</p>
+                        </div>
+                        <div class="subtotal__row">
+                            <p class="discount__label">Discount</p>
+                            <p class="discount__value">0%</p>
+                        </div>
+                    </div>
+                    <div class="total-container">
+                        <p class="total__label">Total</p>
+                        <p class="total__value">200000 RON</p>
+                    </div>
+                    <button class="btn btn-confirm">Confirm</button>
+                </div>
+
+                <!-- The Modal -->
+                <div id="modal" class="modal">
+                    <!-- Modal Content -->
+                    <form class="login__form animate" action="">
+                    <span onclick="document.getElementById('modal').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <div class="login__image"></div>
+
+                        <div class="login__container">
+                            <input class="login__input" type="text" placeholder="Enter Username" name="uname" required>
+                            <input class="login__input" type="password" placeholder="Enter Password" name="psw" required>
+
+                            <button type="submit" class="btn btn-confirm">Login</button>
+                            <label>
+                                <input class="login__check" type="checkbox" checked="checked" name="remember"> Remember me
+                            </label>
+                        </div>
+
+                        <div class="login__footer">
+                        <div class="login__container">
+                        <button type="button" onclick="document.getElementById('modal').style.display='none'" class="btn btn-delete -huge">Cancel</button>
+                            <span class="psw">Forgot <a href="#">password?</a></span>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="build/js/main.js"></script>
+</body>
+
+</html>

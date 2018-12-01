@@ -1,0 +1,96 @@
+.login {
+    &__image {
+        width: rem(140);
+        height: rem(140);
+        margin: rem(30) auto;
+        margin-bottom: 0;
+        border-radius: 50%;
+        background-image: url('../../src/assets/images/user.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    &__container {
+        width: 60%;
+        margin: 0 auto;
+        padding: rem(10);
+    }
+
+    
+    &__form {
+        position: relative;
+        background-color: #fefefe;
+        margin: rem(5) auto; /* 15% from the top and centered */
+        border: rem(1) solid #888;
+        width: 60%; /* Could be more or less, depending on screen size */
+    }
+    &__input {
+        width: 100%;
+        height: 6vh;
+        margin-top: rem(18);
+        margin-bottom: rem(18);
+        text-align: center;
+        font-size: rem(24);
+    }
+
+    &__check {
+        margin-top: rem(20);
+        font-size: rem(18);
+    }
+
+    &__footer {
+        background-color: #F4F4F4;
+    }
+}
+
+.close {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: rem(10);
+    width: rem(30);
+    height: rem(30);
+    cursor: pointer;
+    font-size: rem(38);
+}
+
+.psw {
+    float: right ;
+    margin-top: rem(20);
+    text-transform: uppercase;
+
+    a {
+        text-decoration: none;
+        color: $color-7;
+    }
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: rem(60);
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
