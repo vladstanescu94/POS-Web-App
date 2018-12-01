@@ -1,3 +1,11 @@
+//GLOBAL VARIABLES
+var productList=[
+    //format { id: id, quantity:quantity}
+];
+
+
+
+
 $('.btn-minus').on('click', function (e) {
     e.preventDefault();
     e.preventDefault();
@@ -8,11 +16,12 @@ $('.btn-minus').on('click', function (e) {
     if (value > 1) {
         value = value - 1;
     } else {
-        value = 0;
+        value = 1;
     }
  
   $input.val(value);
 });
+
 
 $('.btn-plus').on('click', function(e) {
     e.preventDefault();
