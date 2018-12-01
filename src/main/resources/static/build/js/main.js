@@ -65,5 +65,17 @@ $('.keypad__display').keypress(function(e) {
 });
 
 function getProduct(code){
-    alert(code);
+    var cod=$('.keypad__display').val();
+    if(cod!=''){
+    $.get("/getProductID",{cod:cod},function (data) {
+        //TODO POPULATE THE WEBPAGE WITH RESULT
+        if(data!=''){
+      console.log(data);}
+      else{
+          alert("There is no product with code: "+cod);
+        }
+    });}
+    else{
+        alert("Please insert a code first");
+    }
 };

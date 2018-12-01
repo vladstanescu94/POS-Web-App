@@ -1,4 +1,4 @@
-package com.proiect.pos;
+package com.proiect.pos.Entities;
 
 import java.io.Serializable;
 import java.util.Collection;

@@ -1,5 +1,7 @@
 package com.proiect.pos;
 
+import com.proiect.pos.Entities.Product;
+import com.proiect.pos.Repositories.ProductRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,12 +15,9 @@ public class PosApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(PosApplication.class, args);
+
+
     }
 
-//    @Bean
-//    public LocalEntityManagerFactoryBean entityManagerFactory(){
-//        LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
-//        factoryBean.setPersistenceUnitName("cpJpaPu");
-//        return factoryBean;
-//    }
+
 }
