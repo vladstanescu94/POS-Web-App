@@ -4,11 +4,6 @@ var productList = [
 ];
 
 
-
-
-
-
-
 $('.btn-minus').on('click', function (e) {
     e.preventDefault();
     e.preventDefault();
@@ -58,7 +53,7 @@ $('.js-delete-all').on('click', function (e) {
     productList.empty();
 });
 
-$('#btn-search').on('click', function (e) {
+$('.js-btn-search').on('click', function (e) {
     $searchbar = $('.keypad__display');
     getProduct($searchbar.val());
     $searchbar.val('');
