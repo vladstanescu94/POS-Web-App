@@ -9,10 +9,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="build/css/main.css" />
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -34,7 +32,7 @@
                     </li>
                 </ul>
             </nav>
-            <div class="user__data">
+            <div class="user__data" onclick="document.getElementById('modal').style.display='block'">
                 <div class="user__icon"></div>
                 <p class="user__name">Vlad</p>
             </div>
@@ -43,6 +41,33 @@
         <div class="main">
             <div class="container">
 
+                <!-- The Modal -->
+
+                <!--TODO FIX THIS ISSUE I OVERWRITE IT WITH JQUERRY-->
+                <div id="modal" class="modal">
+                    <!-- Modal Content -->
+                    <form class="login__form animate" action="">
+                    <span onclick="document.getElementById('modal').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <div class="login__image"></div>
+
+                        <div class="login__container">
+                            <input class="login__input" type="text" placeholder="Enter Username" name="uname" required>
+                            <input class="login__input" type="password" placeholder="Enter Password" name="psw" required>
+
+                            <button type="submit" class="btn btn-confirm">Login</button>
+                            <label>
+                                <input class="login__check" type="checkbox" checked="checked" name="remember"> Remember me
+                            </label>
+                        </div>
+
+                        <div class="login__footer">
+                        <div class="login__container">
+                        <button type="button" onclick="document.getElementById('modal').style.display='none'" class="btn btn-delete -huge">Cancel</button>
+                            <span class="psw">Forgot <a href="#">password?</a></span>
+                        </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
