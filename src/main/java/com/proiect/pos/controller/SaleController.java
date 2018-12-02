@@ -10,7 +10,7 @@ public class SaleController {
     @RequestMapping(value = "/sale",method = RequestMethod.GET)
     public String getSaleWebPage()
     {
-        
+
         return "sale";
     }
 }
