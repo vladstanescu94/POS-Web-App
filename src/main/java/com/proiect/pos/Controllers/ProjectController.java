@@ -2,6 +2,8 @@ package com.proiect.pos.Controllers;
 
 import com.proiect.pos.model.Seller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +58,17 @@ public class ProjectController {
             modelAndView.addObject("seller",new Seller());
             modelAndView.setViewName("register");
         }
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/admin/test",method = RequestMethod.GET)
+    public ModelAndView test(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Seller seller= sellerService.fidnByUsername(auth.getName());
+        modelAndView.addObject("userName", "Welcome " + seller.getFirstName() + " " + seller.getLastName() + " (" + seller.getUsername() + ")");
+        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
+        modelAndView.setViewName("/admin/test");
         return modelAndView;
     }
 

@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name="seller")
@@ -18,7 +19,7 @@ public class Seller {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="user_id")
+    @Column(name="seller_id")
     private int id;
 
     @Column(name = "username")
@@ -41,8 +42,10 @@ public class Seller {
     @Column(name = "picture")
     private Serializable picture;
 
-    @Basic(optional = false)
-//    @NotNull
-    @Column(name = "IS_ADMIN")
-    private Boolean isAdmin;
+    @Column(name = "active")
+    private int active;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "seller_role", joinColumns = @JoinColumn(name = "seller_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 }
