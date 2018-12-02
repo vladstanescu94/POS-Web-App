@@ -30,7 +30,7 @@ public class SellerService {
 
     public void saveSeller(Seller seller) {
         seller.setPassword(bCryptPasswordEncoder.encode(seller.getPassword()));
-        Role userRole = roleRepository.findByRole("ADMIN");
+        Role userRole = roleRepository.findByRole("USER");
         seller.setActive(1);
         seller.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         sellerRepository.save(seller);
