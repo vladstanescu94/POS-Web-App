@@ -2,20 +2,81 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>POS Static Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
           crossorigin="anonymous"/>
-    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/build/css/main.css}" />
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/build/css/main.css}"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
 </head>
 
 <body>
 <div class="app-container">
     <header th:replace="fragments/navbar ::header"/>
+    <div class="main">
+        <form autocomplete="off" action="#" th:action="@{/admin/addproduct}"
+              th:object="${product}" method="post" class="form-horizontal"
+              role="form">
+            <h2>Registration Form</h2>
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{id}" placeholder="Product barcode"
+                           class="form-control"/> <label
+                        th:if="${#fields.hasErrors('id')}" th:errors="*{id}"
+                        class="validation-message"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                           class="validation-message"></label>
+                    <input type="text" th:field="*{name}" placeholder="Name of the product"
+                           class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <label th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"
+                           class="validation-message"></label>
+                    <input type="text" th:field="*{stock}"
+                           placeholder="Stock available" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <input th:field="*{price}"
+                           placeholder="Price" class="form-control"/> <label
+                        th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+                        class="validation-message"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <input type="file" accept="image/png, image/jpeg" th:field="*{image}"
+                           placeholder="Image" class="form-control"/> <label
+                        th:if="${#fields.hasErrors('image')}" th:errors="*{image}"
+                        class="validation-message"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-block">Register Product</button>
+                </div>
+            </div>
+
+            <span th:utext="${successMessage}"></span>
+
+
+        </form>
+    </div>
 </div>
 <script src="/static/build/js/main.js"></script>
 <script src="/static/build/js/sale.js"></script>

@@ -45,7 +45,7 @@ public class ProjectController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView createNewSeller(@Valid Seller seller, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        Seller sellerExists = sellerService.fidnByUsername(seller.getUsername());
+        Seller sellerExists = sellerService.findByUsername(seller.getUsername());
         if (sellerExists != null) {
             bindingResult.rejectValue("username", "error.seller",
                     "There is already a seller with this username");
@@ -65,7 +65,7 @@ public class ProjectController {
     public ModelAndView test(){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Seller seller= sellerService.fidnByUsername(auth.getName());
+        Seller seller= sellerService.findByUsername(auth.getName());
         modelAndView.addObject("userName", "Welcome " + seller.getFirstName() + " " + seller.getLastName() + " (" + seller.getUsername() + ")");
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
         modelAndView.setViewName("/admin/test");
