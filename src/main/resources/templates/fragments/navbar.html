@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/build/css/main.css"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="header" th:fragment="header">
+    <nav class="navigation">
+        <ul class="navigation__list">
+            <li class="list__item">
+                <a href="#" class="item__link js-dash">
+                    <i class="item__icon fas fa-chart-bar"></i>
+                    <p class="item__title">Dashboard</p>
+                </a>
+            </li>
+            <li class="list__item">
+                <a href="/sale">
+                    <div class="item__link js-new-sale">
+                        <i class="item__icon fas fa-shopping-basket"></i>
+                        <p class="item__title">New Sale</p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="user__data" onclick="document.getElementById('modal').style.display='block'">
+        <div class="user__icon"></div>
+        <p class="user__name">Vlad</p>
+    </div>
+
+</header>
+<script th:src="@{/build/js/main.js{}"></script>
+<script th:src="@{/build/js/sale.js}"></script>
+</body>
+
+</body>
+</html>

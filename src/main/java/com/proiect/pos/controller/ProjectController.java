@@ -1,4 +1,4 @@
-package com.proiect.pos.Controllers;
+package com.proiect.pos.controller;
 
 import com.proiect.pos.model.Seller;
 import org.springframework.beans.factory.annotation.Autowired;

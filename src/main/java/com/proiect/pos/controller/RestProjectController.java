@@ -1,4 +1,4 @@
-//package com.proiect.pos.Controllers;
+//package com.proiect.pos.controller;
 //
 //import com.proiect.pos.OLD.Product;
 //import com.proiect.pos.repository.ProductRepository;
