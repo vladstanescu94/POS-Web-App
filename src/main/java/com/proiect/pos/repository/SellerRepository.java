@@ -1,8 +1,8 @@
-package com.proiect.pos.Repositories;
+package com.proiect.pos.repository;
 
-import com.proiect.pos.Entities.Seller;
+import com.proiect.pos.model.Seller;
 import org.springframework.data.repository.CrudRepository;
 
 public interface SellerRepository extends CrudRepository<Seller,Long> {
-    Seller findByFirstName(String firstName);
+    Seller findByUsername(String username);
 }
