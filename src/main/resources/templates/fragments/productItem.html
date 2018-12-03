@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/build/css/main.css}"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<li class="product" th:object="${product}">
+    <img th:src="@{/src/assets/images/ps4.jpg}" alt="Product PS4" class="product__image">
+    <div class="product__data">
+        <h2 class="product__title">
+            <span th:text="${product.name}">THE PRODUCT NAME WILL BE DISPLAYED HERE</span>
+        </h2>
+        <h4 class="product__code">Cod Produs:
+            <span th:text="${product.id}">THE BARCODE GOES HERE</span>
+        </h4>
+    </div>
+    <div class="product__quantity">
+        <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
+        <input class="quantity__input" type="text" name="quantity" value="1">
+        <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
+    </div>
+    <div class="product__price">
+        <p class="price__label">Price</p>
+        <p class="price__value">1899 RON</p>
+    </div>
+    <button class="btn btn-delete far fa-trash-alt"></button>
+</li>
+</body>
+</html>

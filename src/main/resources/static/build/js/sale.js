@@ -60,26 +60,26 @@ $('.js-btn-search').on('click', function (e) {
 });
 
 $('.keypad__display').keypress(function (e) {
-    if (e.which == 13) {
+
+    if (e.which === 13) {
         getProduct($(this).val());
-        e.preventDefault();
         $(this).val('');
+        e.preventDefault();
     } else if (e.which < 48 || e.which > 57) {
         e.preventDefault();
         alert('Only numbers are allowed');
     }
 });
 
-function getProduct(code) {
-    var id = $('.keypad__display').val();
-    if (id != '') {
-        $.get("/getProductID", {
+function getProduct(id) {
+
+    if (id !== '') {
+        $.get("/api/getProductID", {
             id: id
         }, function (data) {
 
-            if (data != '') {
-                addProductToListAndPopulate(data)
-                console.log(data);
+            if (data !== '') {
+                addProductToListAndPopulate(data);
             } else {
                 alert("There is no product with code: " + id);
             }
@@ -90,18 +90,18 @@ function getProduct(code) {
 };
 
 function addProductToListAndPopulate(data) {
-    var product = {};
-    product["id"] = data.id;
-    product["name"] = data.name;
-    product["stock"] = data.stock;
-    product['price'] = data.price;
-    product["image"] = data.image;
-    productList.push(product);
-    populateProductList(product);
+    // var product = {};
+    // product["id"] = data.id;
+    // product["name"] = data.name;
+    // product["stock"] = data.stock;
+    // product['price'] = data.price;
+    // product["image"] = data.image;
+    // productList.push(product);
+    populateProductList(data);
 
 };
 
 //TODO POPULATE THE WEBPAGE WITH RESULT
 function populateProductList(product) {
-
-};
+    $('.products__list').append(product);
+}
