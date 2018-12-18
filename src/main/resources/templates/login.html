@@ -5,7 +5,8 @@
 <head>
     <title>Spring Security Tutorial</title>
     <!--<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" type="text/css" media="screen" href="build/css/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -16,19 +17,31 @@
 </form>
 
 <div class="container">
-    <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" th:text="Welcome"></h3>
-        <br/>
+    <form class="login__form animate" th:action="@{/login}">
+        <div class="login__image"></div>
 
-        <input type="text" id="username" name="username"  th:placeholder="Username"
-               class="form-control" /> <br/>
-        <input type="password"  th:placeholder="Password"
-               id="password" name="password" class="form-control" /> <br />
+        <div class="login__container">
+            <input class="login__input" type="text" placeholder="Enter Username" name="uname" required>
+            <input class="login__input" type="password"  placeholder="Enter Password" name="psw"
+                   required>
+            <div align="center" th:if="${param.error}">
+                <p style="font-size: 20; color: #FF1C19;">Username or Password invalid, please verify</p>
+            </div>
 
-        <div align="center" th:if="${param.error}">
-            <p style="font-size: 20; color: #FF1C19;">Username or Password invalid, please verify</p>
+            <button type="submit" class="btn btn-confirm">Login</button>
+            <label>
+                <input class="login__check" type="checkbox" checked="checked" name="remember"> Remember
+                me
+            </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+
+        <div class="login__footer">
+            <div class="login__container">
+                <button type="button" onclick="document.getElementById('modal').style.display='none'"
+                        class="btn btn-delete -huge">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+        </div>
     </form>
 </div>
 </body>
