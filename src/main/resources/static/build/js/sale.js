@@ -1,8 +1,3 @@
-//GLOBAL VARIABLES
-var productList = [
-    //format { id: id, quantity:quantity}
-];
-
 
 $(document).on('click', '.btn-minus', function (e) {
     e.preventDefault();
@@ -37,7 +32,7 @@ $(document).on('click', '.btn-plus', function (e) {
 });
 
 
-//TODO FIX DELETE ISSUE. DELETE INDIVIDUALLY NOT WORKING
+//TODO IF MORE THAN 1 IN QUANTITY ASK IF HE WANTS TO REMOVE ALL PRODUCTS
 $(document).on('click', ".btn-delete", function (e) {
     e.preventDefault();
     var $this = $(this);
@@ -81,7 +76,6 @@ function getProduct(id) {
         $.get("/api/getProductID", {
             id: id
         }, function (data) {
-
             if (data !== '') {
                 populateOrIncrementProductList(data);
                 // console.log(data);
@@ -117,7 +111,7 @@ function convertDataToProduct(data) {
     return product;
 }
 
-//TODO CREATE PRECOMPILED HANDELEBARS FILE
+//TODO CREATE PRECOMPILED HANDLEBARS FILE
 function populateProductList(product) {
 
     var htmlToBeCompiled = document.getElementById('productItem').innerHTML;
@@ -144,4 +138,10 @@ function incrementProductQuantity(element){
     var quantityInput=element.getElementsByClassName("quantity__input")[0];
     var quantity=parseInt(quantityInput.value,10);
     quantityInput.value=quantity+1;
+}
+
+function setQuantity(){
+    var $this = $(this);
+    var $input = $this.closest('div').find('input');
+    var value = parseInt($input.val());
 }

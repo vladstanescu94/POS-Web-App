@@ -30,5 +30,37 @@ public class RestProjectController {
         return product;
     }
 
+    @RequestMapping(path="/increaseQuantity",method = RequestMethod.GET)
+    public String increaseProductQuantity(int id){
+        //TODO ADI: IMPLEMENT LOGIC BACKEND FOR INCREASING QUANTITY
+        /*
+        should return increaseSuccess if increasing was possible,
+                        EOS if there's no more stock for it,
+                        error if there's any other type of error
+         */
+        return "increaseSuccess";
+    }
+
+    @RequestMapping(path="/decreaseQuantity",method=RequestMethod.GET)
+    public String decreaseProductQuantity(int id){
+        //TODO ADI: IMPLEMENT LOGIC BACKEND FOR INCREASING QUANTITY
+        /*
+        should return decreaseSuccess if increasing was possible,
+                        error if there's any other type of error
+        */
+        return "decreaseSuccess";
+    }
+
+    @RequestMapping(path="/customQuantity",method=RequestMethod.GET)
+    public String setCustomQuantity(int id, int quantity){
+        //TODO ADI: IMPLEMENT LOGIC BACKEND FOR SETTING CUSTOM QUANTITY
+         /*
+        should return increaseSuccess if increasing was possible,
+                        EOS if there's no more stock for it,
+                        error if there's any other type of error
+         */
+        return "customSucces";
+    }
+
 
 }
