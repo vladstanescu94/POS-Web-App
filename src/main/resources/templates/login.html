@@ -17,12 +17,12 @@
 </form>
 
 <div class="container">
-    <form class="login__form animate" th:action="@{/login}">
+    <form class="login__form animate" th:action="@{/login}" method="POST">
         <div class="login__image"></div>
 
         <div class="login__container">
-            <input class="login__input" type="text" placeholder="Enter Username" name="uname" required>
-            <input class="login__input" type="password"  placeholder="Enter Password" name="psw"
+            <input class="login__input" id="username" type="text" placeholder="Enter Username" name="username" required>
+            <input class="login__input" id="password" type="password"  placeholder="Enter Password" name="password"
                    required>
             <div align="center" th:if="${param.error}">
                 <p style="font-size: 20; color: #FF1C19;">Username or Password invalid, please verify</p>
