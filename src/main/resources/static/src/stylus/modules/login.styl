@@ -20,9 +20,10 @@
     &__form {
         position: relative;
         background-color: #fefefe;
-        margin: rem(5) auto; /* 15% from the top and centered */
+        margin: rem(5) auto; 
+        margin-top: rem(50);
         border: rem(1) solid #888;
-        width: 60%; /* Could be more or less, depending on screen size */
+        width: 60%; 
     }
     &__input {
         width: 100%;
@@ -31,6 +32,10 @@
         margin-bottom: rem(18);
         text-align: center;
         font-size: rem(24);
+
+        &:last-of-type{
+            margin-top: 0;
+        }
     }
 
     &__check {
