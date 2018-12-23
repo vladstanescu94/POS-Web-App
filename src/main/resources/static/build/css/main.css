@@ -111,6 +111,9 @@ body {
   font-size: 1.5rem;
   text-decoration: none;
 }
+.btn-signup.-extraMargin {
+  margin-bottom: 1.25rem;
+}
 .btn-delete {
   width: auto;
   font-size: 2.375rem;
@@ -436,6 +439,12 @@ body {
   width: 60%;
   margin: 0 auto;
   padding: 0.625rem;
+}
+.login__intro {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 1.25rem auto;
+  font-size: 2.625rem;
 }
 .login__form {
   position: relative;
