@@ -18,7 +18,7 @@ gulp.task('stylus', function () {
         .on('end', function(){ log('Done Styling!'); });
 });
 
-gulp.task('minify-css',() => {
+gulp.task('minify-css',function () {
     return gulp.src('build/css/main.css')
       .pipe(sourcemaps.init())
       .pipe(cleanCSS())
@@ -28,7 +28,7 @@ gulp.task('minify-css',() => {
       .on('end', function(){ log('Done Minifying!'); });
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
     gulp.watch('src/stylus/**/*.styl', ['stylus']);
     gulp.watch('build/css/main.css', ['minify-css']);
 });

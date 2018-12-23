@@ -15,6 +15,9 @@ body {
   font-size: 1rem;
   font-weight: normal;
 }
+a {
+  text-decoration: none;
+}
 .app-container {
   height: 100vh;
   background-color: #f4f4f4;
@@ -99,6 +102,20 @@ body {
   font-size: 1rem;
   margin-left: 0.25rem;
   padding: 0;
+}
+.btn-signup {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 1.25rem;
+  padding: 0.875rem 0;
+  background-color: #333;
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.btn-signup.-extraMargin {
+  margin-bottom: 1.25rem;
 }
 .btn-delete {
   width: auto;
@@ -426,12 +443,19 @@ body {
   margin: 0 auto;
   padding: 0.625rem;
 }
+.login__intro {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 1.25rem auto;
+  font-size: 2.625rem;
+}
 .login__form {
   position: relative;
   background-color: #fefefe;
-  margin: 0.3125rem auto; /* 15% from the top and centered */
+  margin: 0.3125rem auto;
+  margin-top: 3.125rem;
   border: 0.0625rem solid #888;
-  width: 60%; /* Could be more or less, depending on screen size */
+  width: 60%;
 }
 .login__input {
   width: 100%;
@@ -440,6 +464,9 @@ body {
   margin-bottom: 1.125rem;
   text-align: center;
   font-size: 1.5rem;
+}
+.login__input:last-of-type {
+  margin-top: 0;
 }
 .login__check {
   margin-top: 1.25rem;

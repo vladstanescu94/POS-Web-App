@@ -29,3 +29,5 @@ media/*
 /dist/
 /nbdist/
 /.nb-gradle/
+
+/src/main/resources/static/node_modules/
