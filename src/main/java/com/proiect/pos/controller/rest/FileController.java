@@ -15,35 +15,45 @@ import java.io.IOException;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value="/file")
+@RequestMapping(value = "/file")
 public class FileController {
 
-    @RequestMapping(value="/upload",method = RequestMethod.POST)
-    public String uploadFile(@RequestParam("image") MultipartFile file){
-//        String path = new File("src/main/resources/public/media/").getAbsolutePath();
-        String path="/media";
-        String userDir = System.getProperty("user.dir");
-        path=userDir+path;
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public String uploadFile(@RequestParam("image") MultipartFile file) {
 
-        File directory = new File(path);
-        if (! directory.exists()){
-            directory.mkdir();
-        }
+        final String uuid = UUID.randomUUID().toString().replace("-", "");
 
-        final String uuid= UUID.randomUUID().toString().replace("-","");
-        path=path.concat("/"+uuid+".png");
-        if(!file.isEmpty()){
-            System.out.println(path);
+        String path = getDirectory();
+        path = path.concat("/" + uuid + ".png");
+
+        if (writeFile(file, path)) return uuid;
+        return "-1";
+    }
+
+    private boolean writeFile(@RequestParam("image") MultipartFile file, String path) {
+        if (!file.isEmpty()) {
             try {
-                BufferedImage src = null;
-                src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-                File destination = new File(path); // something like C:/Users/tom/Documents/nameBasedOnSomeId.png
+                BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+                File destination = new File(path);
                 ImageIO.write(src, "png", destination);
             } catch (IOException e) {
                 e.printStackTrace();
+                return false;
             }
         }
-        return uuid;
+        return true;
+    }
+
+    private String getDirectory() {
+        String userDir = System.getProperty("user.dir");
+        String path = "/media";
+        path = userDir + path;
+
+        File directory = new File(path);
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        return path;
     }
 
 

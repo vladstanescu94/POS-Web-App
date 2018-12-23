@@ -13,7 +13,6 @@ document.getElementById("imageSelect").onchange = function () {
         processData: false,
         contentType: false,
         cache: false,
-        // data:$('#imageSelect').serialize(),
         data: formData,
         success: function (data) {
             document.getElementById("imageUUID").value=data;

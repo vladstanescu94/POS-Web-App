@@ -24,8 +24,6 @@ public class ProductController {
         Product product=null;
         if(productExists!=null){
             product=productExists;
-            String path= "/media/" +product.getImage()+".png";
-            product.setImage(path);
         }
         return product;
     }
