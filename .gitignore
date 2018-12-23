@@ -1,6 +1,12 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 
+### STUFF TO IGNORE ###
+
+# exclude everything but keep folder
+/static/media/*
+!/static/media/.gitkeep
+
 ### STS ###
 .apt_generated
 .classpath
