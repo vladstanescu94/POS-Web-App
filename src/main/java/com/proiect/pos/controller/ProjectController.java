@@ -22,6 +22,10 @@ public class ProjectController {
 
     @RequestMapping("/")
     String home() {
+        return "login";
+    }
+    @RequestMapping("/home")
+    String index() {
         return "home";
     }
 
