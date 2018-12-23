@@ -15,6 +15,9 @@ body {
   font-size: 1rem;
   font-weight: normal;
 }
+a {
+  text-decoration: none;
+}
 .app-container {
   height: 100vh;
   background-color: #f4f4f4;
