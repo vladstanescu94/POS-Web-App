@@ -1,44 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>POS Static Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-          crossorigin="anonymous"/>
-    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/build/css/main.css}"/>
-    <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-    <script id="productItem" type="text/x-handlebars-template">
-    <li class="product">
-            <img src="{{{image}}}" alt="picture of product" class="product__image">
-            <div class="product__data">
-                <h2 class="product__title">
-                    {{{name}}}
-                </h2>
-                <h4 class="product__code">BARCODE:{{{id}}} </h4>
-            </div>
-            <div class="product__quantity">
-                <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
-                <input class="quantity__input" type="text" name="quantity" value="1">
-                <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
-            </div>
-            <div class="product__price">
-                <p class="price__label">Price</p>
-                <p class="price__value">{{{price}}}</p>
-            </div>
-            <button class="btn btn-delete far fa-trash-alt"></button>
-        </li>
-    </script>
-</head>
+<head th:replace="fragments/head"/>
 
 <body>
 
+<script id="productItem" type="text/x-handlebars-template">
+    <li class="product">
+        <img src="{{{image}}}" alt="picture of product" class="product__image">
+        <div class="product__data">
+            <h2 class="product__title">
+                {{{name}}}
+            </h2>
+            <h4 class="product__code">BARCODE:{{{id}}} </h4>
+        </div>
+        <div class="product__quantity">
+            <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
+            <input class="quantity__input" type="text" name="quantity" value="1">
+            <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
+        </div>
+        <div class="product__price">
+            <p class="price__label">Price</p>
+            <p class="price__value">{{{price}}}</p>
+        </div>
+        <button class="btn btn-delete far fa-trash-alt"></button>
+    </li>
+</script>
 
 <div class="app-container">
     <header th:replace="fragments/navbar ::header">
@@ -110,8 +97,7 @@
 </div>
 
 
-<script type="text/javascript" th:src="@{/build/js/sale.js}"></script>
-<script type="text/javascript" th:src="@{/build/js/main.js}"></script>
+<div th:replace="fragments/footer :: footer"/>
 </body>
 
 </html>
