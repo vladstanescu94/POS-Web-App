@@ -1,4 +1,4 @@
-package com.proiect.pos.controller;
+package com.proiect.pos.controller.rest;
 import com.proiect.pos.model.Product;
 import com.proiect.pos.repository.ProductRepository;
 import com.proiect.pos.repository.SellerRepository;
@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value="/api")
-public class RestProjectController {
+public class ProductController {
 
 
     @Autowired
