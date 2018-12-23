@@ -5,8 +5,6 @@ import com.proiect.pos.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping(value="/api")
 public class ProductController {
@@ -26,6 +24,8 @@ public class ProductController {
         Product product=null;
         if(productExists!=null){
             product=productExists;
+            String path= "/media/" +product.getImage()+".png";
+            product.setImage(path);
         }
         return product;
     }

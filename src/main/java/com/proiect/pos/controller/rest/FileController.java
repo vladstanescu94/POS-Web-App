@@ -20,7 +20,16 @@ public class FileController {
 
     @RequestMapping(value="/upload",method = RequestMethod.POST)
     public String uploadFile(@RequestParam("image") MultipartFile file){
-        String path = new File("src/main/resources/static/media/").getAbsolutePath();
+//        String path = new File("src/main/resources/public/media/").getAbsolutePath();
+        String path="/media";
+        String userDir = System.getProperty("user.dir");
+        path=userDir+path;
+
+        File directory = new File(path);
+        if (! directory.exists()){
+            directory.mkdir();
+        }
+
         final String uuid= UUID.randomUUID().toString().replace("-","");
         path=path.concat("/"+uuid+".png");
         if(!file.isEmpty()){
