@@ -4,8 +4,8 @@
 ### STUFF TO IGNORE ###
 
 # exclude everything but keep folder
-/static/media/*
-!/static/media/.gitkeep
+src/main/resources/static/media/*
+!src/main/resources/static/media/.gitkeep
 
 ### STS ###
 .apt_generated
