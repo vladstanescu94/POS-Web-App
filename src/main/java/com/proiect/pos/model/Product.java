@@ -37,5 +37,5 @@ public class Product {
     private double price;
 
     @Column(name="image")
-    private String image;
+    private String image="-1";
 }
