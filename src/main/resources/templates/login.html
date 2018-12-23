@@ -2,22 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <title>Spring Security Tutorial</title>
-    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />-->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-    <link rel="stylesheet" type="text/css" media="screen" href="build/css/main.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+<head th:replace="fragments/head"/>
 
 <body>
-<form th:action="@{/register}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
-</form>
-
 <div class="container">
-    <form class="login__form animate" th:action="@{/login}" method="POST">
+    <form class="login__form" th:action="@{/login}" method="POST">
         <div class="login__image"></div>
 
         <div class="login__container">
@@ -29,6 +18,7 @@
             </div>
 
             <button type="submit" class="btn btn-confirm">Login</button>
+            <a href="/register" class="btn btn-signup">Sign Up</a>
             <label>
                 <input class="login__check" type="checkbox" checked="checked" name="remember"> Remember
                 me
@@ -38,11 +28,12 @@
         <div class="login__footer">
             <div class="login__container">
                 <button type="button" onclick="document.getElementById('modal').style.display='none'"
-                        class="btn btn-delete -huge">Cancel</button>
+                        class="btn btn-delete -huge">Cancel</button>       
                 <span class="psw">Forgot <a href="#">password?</a></span>
             </div>
         </div>
     </form>
 </div>
+<div th:replace="fragments/footer :: footer"/>
 </body>
 </html>

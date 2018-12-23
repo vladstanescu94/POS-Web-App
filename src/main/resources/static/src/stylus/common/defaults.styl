@@ -18,6 +18,10 @@ body {
   font-weight: normal;
 }
 
+a {
+  text-decoration: none;
+}
+
 .app-container {
   height: 100vh;
   background-color: $color-1;
@@ -109,6 +113,23 @@ body {
   font-size: rem(16);
   margin-left: rem(4);
   padding: 0;
+}
+
+.btn-signup {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: rem(20);
+  padding: rem(14) 0;
+  background-color: $color-2;
+  color: white;
+  font-size: rem(24);
+  text-decoration: none;
+
+  &.-extraMargin {
+    margin-bottom: rem(20);
+  }
+
 }
 
 .btn-delete {
