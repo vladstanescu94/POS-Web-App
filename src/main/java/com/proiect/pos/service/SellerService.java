@@ -24,7 +24,7 @@ public class SellerService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public Seller fidnByUsername(String username) {
+    public Seller findByUsername(String username) {
         return sellerRepository.findByUsername(username);
     }
 

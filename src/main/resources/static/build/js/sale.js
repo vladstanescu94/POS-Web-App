@@ -1,10 +1,5 @@
-//GLOBAL VARIABLES
-var productList = [
-    //format { id: id, quantity:quantity}
-];
 
-
-$('.btn-minus').on('click', function (e) {
+$(document).on('click', '.btn-minus', function (e) {
     e.preventDefault();
     e.preventDefault();
     var $this = $(this);
@@ -21,7 +16,7 @@ $('.btn-minus').on('click', function (e) {
 });
 
 
-$('.btn-plus').on('click', function (e) {
+$(document).on('click', '.btn-plus', function (e) {
     e.preventDefault();
     var $this = $(this);
     var $input = $this.closest('div').find('input');
@@ -36,15 +31,19 @@ $('.btn-plus').on('click', function (e) {
     $input.val(value);
 });
 
-$('.btn-delete').on('click', function (e) {
+
+//TODO IF MORE THAN 1 IN QUANTITY ASK IF HE WANTS TO REMOVE ALL PRODUCTS
+$(document).on('click', ".btn-delete", function (e) {
     e.preventDefault();
     var $this = $(this);
     var $item = $this.closest('li');
 
     $item.remove();
+
+    console.log("delete");
 });
 
-$('.js-delete-all').on('click', function (e) {
+$(document).on('click', '.js-delete-all', function (e) {
     e.preventDefault();
     var $this = $(this);
     var $list = $('.products__list');
@@ -60,26 +59,26 @@ $('.js-btn-search').on('click', function (e) {
 });
 
 $('.keypad__display').keypress(function (e) {
-    if (e.which == 13) {
+
+    if (e.which === 13) {
         getProduct($(this).val());
-        e.preventDefault();
         $(this).val('');
+        e.preventDefault();
     } else if (e.which < 48 || e.which > 57) {
         e.preventDefault();
         alert('Only numbers are allowed');
     }
 });
 
-function getProduct(code) {
-    var id = $('.keypad__display').val();
-    if (id != '') {
-        $.get("/getProductID", {
+function getProduct(id) {
+
+    if (id !== '') {
+        $.get("/api/getProductID", {
             id: id
         }, function (data) {
-
-            if (data != '') {
-                addProductToListAndPopulate(data)
-                console.log(data);
+            if (data !== '') {
+                populateOrIncrementProductList(data);
+                // console.log(data);
             } else {
                 alert("There is no product with code: " + id);
             }
@@ -89,19 +88,60 @@ function getProduct(code) {
     }
 };
 
-function addProductToListAndPopulate(data) {
+function populateOrIncrementProductList(data) {
+    var product = convertDataToProduct(data);
+    var element = getElementInList(product);
+    if (element != null) {
+        incrementProductQuantity(element);
+    }
+    else {
+        populateProductList(product);
+    }
+};
+
+//TODO REMOVE THIS AFTER FIXING IMAGE PROBLEMS
+function convertDataToProduct(data) {
     var product = {};
     product["id"] = data.id;
     product["name"] = data.name;
-    product["stock"] = data.stock;
-    product['price'] = data.price;
-    product["image"] = data.image;
-    productList.push(product);
-    populateProductList(product);
+    product["quantity"] = 1;
+    product["price"] = data.price;
+    //TODO IMPLEMENT IMAGEURL
+    product["imageSource"] = null;
+    return product;
+}
 
-};
-
-//TODO POPULATE THE WEBPAGE WITH RESULT
+//TODO CREATE PRECOMPILED HANDLEBARS FILE
 function populateProductList(product) {
 
-};
+    var htmlToBeCompiled = document.getElementById('productItem').innerHTML;
+    var template = Handlebars.compile(htmlToBeCompiled);
+    var context = template(product);
+    $('.products__list').append(context);
+
+}
+
+function getElementInList(product) {
+    var elements = document.getElementsByClassName("product");
+    for (var i = 0; i < elements.length; i++) {
+        var innerHTML = elements[i].getElementsByClassName('product__code')[0].innerHTML;
+        var id = innerHTML.match(/[0-9]+/)[0];
+        id = parseInt(id, 10);
+        if (id === product["id"]) {
+            return elements[i];
+        }
+    }
+    return null;
+}
+
+function incrementProductQuantity(element){
+    var quantityInput=element.getElementsByClassName("quantity__input")[0];
+    var quantity=parseInt(quantityInput.value,10);
+    quantityInput.value=quantity+1;
+}
+
+function setQuantity(){
+    var $this = $(this);
+    var $input = $this.closest('div').find('input');
+    var value = parseInt($input.val());
+}
