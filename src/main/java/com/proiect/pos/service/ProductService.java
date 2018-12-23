@@ -18,6 +18,8 @@ public class ProductService {
     public Product findById(int id){return productRepository.findById(id);}
 
     public void saveProduct(Product product){
+        String path= "/media/" +product.getImage()+".png";
+        product.setImage(path);
         productRepository.save(product);
     }
 

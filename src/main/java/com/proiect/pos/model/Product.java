@@ -37,5 +37,5 @@ public class Product {
     private double price;
 
     @Column(name="image")
-    private Serializable image;
+    private String image="-1";
 }

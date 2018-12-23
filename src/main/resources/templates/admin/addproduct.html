@@ -47,7 +47,8 @@
 
             <div class="form-group">
                 <div class="col-sm-9">
-                    <input type="file" accept="image/png, image/jpeg" th:field="*{image}"
+                    <input id="imageUUID" type="hidden" th:field="*{image}"/>
+                    <input id="imageSelect" type="file" accept="image/png, image/jpeg"
                            placeholder="Image" class="form-control"/> <label
                         th:if="${#fields.hasErrors('image')}" th:errors="*{image}"
                         class="validation-message"></label>
@@ -67,6 +68,9 @@
     </div>
 </div>
 <div th:replace="fragments/footer :: footer" />
+<script type="text/javascript" th:src="@{/build/js/sale.js}"></script>
+<script type="text/javascript" th:src="@{/build/js/addProduct.js}"></script>
+ 
 </body>
 
 </html>

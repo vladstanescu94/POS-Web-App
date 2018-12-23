@@ -89,6 +89,7 @@ function getProduct(id) {
 };
 
 function populateOrIncrementProductList(data) {
+    console.log(data);
     var product = convertDataToProduct(data);
     var element = getElementInList(product);
     if (element != null) {
@@ -99,15 +100,13 @@ function populateOrIncrementProductList(data) {
     }
 };
 
-//TODO REMOVE THIS AFTER FIXING IMAGE PROBLEMS
 function convertDataToProduct(data) {
     var product = {};
     product["id"] = data.id;
     product["name"] = data.name;
     product["quantity"] = 1;
     product["price"] = data.price;
-    //TODO IMPLEMENT IMAGEURL
-    product["imageSource"] = null;
+    product["image"] = data.image;
     return product;
 }
 
