@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="INSERT_ADMIN" author="Stefan">
+        <insert tableName="seller">
+            <column name="active" value="1"/>
+            <column name="first_name" value="Admin"/>
+            <column name="last_name" value="Adminescu"/>
+            <column name="username" value="1"/>
+            <column name="password" value="$2a$10$wXxzowwIA/TLQbG5LlImQe1TGJC7F/e1VRdU83cMaohrktOm6FRje"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="INSERT_ROLES" author="Stefan">
+        <insert tableName="role">
+            <column name="id" value="1"/>
+            <column name="role" value="ADMIN"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" value="2"/>
+            <column name="role" value="USER"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="SET_ROLE_TO_ADMIN" author="Stefan">
+        <insert tableName="seller_role">
+            <column name="seller_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="ADD_product" author="Stefan">
+        <insert tableName="product">
+            <column name="id" value="1"/>
+            <column name="name" value="XBOX ONE THE BEST"/>
+            <column name="price" value="1650"/>
+            <column name="stock" value="1"/>
+            <column name="image" value="/media/-1.png"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="2"/>
+            <column name="name" value="CEAPA"/>
+            <column name="price" value="4.73"/>
+            <column name="stock" value="4"/>
+            <column name="image" value="/media/-1.png"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="3"/>
+            <column name="name" value="MOUSE"/>
+            <column name="price" value="69.99"/>
+            <column name="stock" value="2"/>
+            <column name="image" value="/media/-1.png"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="4"/>
+            <column name="name" value="SARMALE"/>
+            <column name="price" value="2"/>
+            <column name="stock" value="100"/>
+            <column name="image" value="/media/-1.png"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="5"/>
+            <column name="name" value="LAPTOP"/>
+            <column name="price" value="5387.99"/>
+            <column name="stock" value="2"/>
+            <column name="image" value="/media/-1.png"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="6"/>
+            <column name="name" value="MONITOR LCD"/>
+            <column name="price" value="699.12"/>
+            <column name="stock" value="3"/>
+            <column name="image" value="/media/-1.png"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="7"/>
+            <column name="name" value="CD MANELE 'GUTA E VIATA MEA'"/>
+            <column name="price" value="9.99"/>
+            <column name="stock" value="1000"/>
+            <column name="image" value="/media/-1.png"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="8"/>
+            <column name="name" value="SUBSCRIPTIE PORNHUB"/>
+            <column name="price" value="4.9"/>
+            <column name="stock" value="50"/>
+            <column name="image" value="/media/-1.png"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="9"/>
+            <column name="name" value="PAPUSA GONFLABILA PT ADI"/>
+            <column name="price" value="0.01"/>
+            <column name="stock" value="1000"/>
+            <column name="image" value="/media/-1.png"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="10"/>
+            <column name="name" value="MacBook-u' lu' Vlad"/>
+            <column name="price" value="1"/>
+            <column name="stock" value="1"/>
+            <column name="image" value="/media/-1.png"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
