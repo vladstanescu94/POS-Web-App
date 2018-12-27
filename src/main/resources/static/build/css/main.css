@@ -572,22 +572,18 @@ a {
   z-index: 99;
   padding-top: 0.875rem;
 }
+.form-add-product__input {
+  font-size: 1rem;
+  padding: 0.625rem 0;
+  text-align: center;
+  border: none;
+  border-bottom: 0.0625rem solid rgba(0,0,0,0.8);
+}
 .form-add-product__wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 0.625rem;
-}
-.form-add-product::after {
-  content: '';
-  display: block;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 0.0625rem;
-  background-color: #979797;
-  opacity: 0.3;
 }
 
 /*# sourceMappingURL=main.css.map */
