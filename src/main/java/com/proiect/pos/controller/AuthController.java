@@ -14,7 +14,7 @@ import com.proiect.pos.service.SellerService;
 import javax.validation.Valid;
 
 @Controller
-public class ProjectController {
+public class AuthController {
 
     @Autowired
     private SellerService sellerService;

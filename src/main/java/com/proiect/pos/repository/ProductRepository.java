@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends CrudRepository<Product,Integer> {
     Product findById(int id);
+    Product[] findAllByStockGreaterThanEqual(int amount);
 }
