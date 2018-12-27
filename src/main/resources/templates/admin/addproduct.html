@@ -1,76 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/head"/>
+<head th:replace="fragments/head" />
 
 <body>
-<div class="app-container">
-    <header th:replace="fragments/navbar ::header"/>
-    <div class="main">
-        <form autocomplete="off" action="#" th:action="@{/admin/addproduct}"
-              th:object="${product}" method="post" class="form-horizontal"
-              role="form">
-            <h2>Registration Form</h2>
-            <div class="form-group">
-                <div class="col-sm-9">
-                    <input type="text" th:field="*{id}" placeholder="Product barcode"
-                           class="form-control"/> <label
-                        th:if="${#fields.hasErrors('id')}" th:errors="*{id}"
-                        class="validation-message"></label>
+    <div class="app-container">
+        <header th:replace="fragments/navbar ::header" />
+        <div class="main">
+            <div class="container">
+                <div class="wrapper">
+                    <div class="products__container -dashboard">
+                        <form autocomplete="off" action="#" th:action="@{/admin/addproduct}" th:object="${product}"
+                            method="post" class="form-add-product" role="form">
+                            <div class="form-add-product__wrapper">
+                                <div class="form-add-product__group">
+                                    <input type="text" th:field="*{id}" placeholder="Product barcode" class="form-add-product__input" />
+                                    <label th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="validation-message"></label>
+                                </div>
+                                <div class="form-add-product__group">
+                                    <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="validation-message"></label>
+                                    <input type="text" th:field="*{name}" placeholder="Name of the product" class="form-add-product__input" />
+                                </div>
+
+                                <div class="form-add-product__group">
+                                    <label th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="validation-message"></label>
+                                    <input type="text" th:field="*{stock}" placeholder="Stock available" class="form-add-product__input" />
+                                </div>
+                                <div class="form-add-product__group">
+                                    <input th:field="*{price}" placeholder="Price" class="form-add-product__input" />
+                                    <label th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="validation-message"></label>
+                                </div>
+
+                                <div class="form-add-product__group">
+                                    <input id="imageUUID" type="hidden" th:field="*{image}" />
+                                    <input id="imageSelect" type="file" accept="image/png, image/jpeg" placeholder="Image"
+                                        class="form-add-product__input" />
+                                    <label th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="validation-message"></label>
+                                </div>
+
+                                <div class="form-add-product__group">
+                                    <button type="submit" class="btn -tiny">Add Product</button>
+                                </div>
+                            </div>
+                            <span th:utext="${successMessage}"></span>
+                        </form>
+                        <ul class="products__list -dashboard">
+                            <li class="product">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="action">
+                        <button class="btn ">Button1</button>
+                        <button class="btn ">Button2</button>
+                        <button class="btn ">Button3</button>
+                        <button class="btn ">Button4</button>
+                        <button class="btn ">Button5</button>
+                        <button class="btn btn-delete -huge js-delete-all js-btn-delete-all">Delete All</button>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-9">
-                    <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-                           class="validation-message"></label>
-                    <input type="text" th:field="*{name}" placeholder="Name of the product"
-                           class="form-control"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-9">
-                    <label th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"
-                           class="validation-message"></label>
-                    <input type="text" th:field="*{stock}"
-                           placeholder="Stock available" class="form-control"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-9">
-                    <input th:field="*{price}"
-                           placeholder="Price" class="form-control"/> <label
-                        th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
-                        class="validation-message"></label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-9">
-                    <input id="imageUUID" type="hidden" th:field="*{image}"/>
-                    <input id="imageSelect" type="file" accept="image/png, image/jpeg"
-                           placeholder="Image" class="form-control"/> <label
-                        th:if="${#fields.hasErrors('image')}" th:errors="*{image}"
-                        class="validation-message"></label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-9">
-                    <button type="submit" class="btn btn-primary btn-block">Register Product</button>
-                </div>
-            </div>
-
-            <span th:utext="${successMessage}"></span>
-
-
-        </form>
+        </div>
     </div>
-</div>
-<div th:replace="fragments/footer :: footer" />
-<script type="text/javascript" th:src="@{/build/js/sale.js}"></script>
-<script type="text/javascript" th:src="@{/build/js/addProduct.js}"></script>
- 
+    <div th:replace="fragments/footer :: footer" />
 </body>
 
 </html>
