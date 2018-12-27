@@ -71,6 +71,13 @@ a {
     width: 6.8vw;
   }
 }
+.btn.-tiny {
+  padding: 0;
+  width: 10vw;
+  height: 5vh;
+  border: 0.0625rem solid #fff;
+  font-size: 1rem;
+}
 .btn.-extra {
   padding: 0;
   width: 14vw;
@@ -227,8 +234,14 @@ a {
   overflow: hidden;
   overflow-y: scroll;
 }
+.products__container.-dashboard {
+  padding-top: 0;
+}
 .products__list {
   list-style: none;
+}
+.products__list.-dashboard {
+  padding-top: 2.5rem;
 }
 .product {
   display: flex;
@@ -551,6 +564,30 @@ a {
   to {
     transform: scale(1);
   }
+}
+.form-add-product {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 99;
+  padding-top: 0.875rem;
+}
+.form-add-product__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.625rem;
+}
+.form-add-product::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.0625rem;
+  background-color: #979797;
+  opacity: 0.3;
 }
 
 /*# sourceMappingURL=main.css.map */

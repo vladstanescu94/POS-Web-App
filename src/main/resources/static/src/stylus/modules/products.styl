@@ -9,10 +9,17 @@
         box-shadow: 0 0 rem(8) 0 rgba(124, 124, 124, 45);
         overflow: hidden;
         overflow-y: scroll;
+        &.-dashboard {
+            padding-top: 0;
+        }
     }
 
     &__list {
         list-style: none;
+
+        &.-dashboard {
+            padding-top: rem(40);
+        }
     }
 }
 

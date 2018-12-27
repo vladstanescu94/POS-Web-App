@@ -1,0 +1,26 @@
+.form-add-product {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 99;
+    padding-top: rem(14);
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: rem(10);
+    }
+
+    &::after {
+       content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: rem(1);
+        background-color: $color-9;
+        opacity: 0.3; 
+    }
+}
