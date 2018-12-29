@@ -17,6 +17,8 @@ public class ProductService {
 
     public Product findById(int id){return productRepository.findById(id);}
 
+    public Product[] findAllByStockGreaterThanEqual(int amount){return productRepository.findAllByStockGreaterThanEqual(amount);}
+
     public void saveProduct(Product product){
         String path= "/media/" +product.getImage()+".png";
         product.setImage(path);
