@@ -1,4 +1,7 @@
 
+window.onload-computePrices();
+
+
 $(document).on('click', '.btn-minus', function (e) {
     e.preventDefault();
     e.preventDefault();
@@ -13,6 +16,7 @@ $(document).on('click', '.btn-minus', function (e) {
     }
 
     $input.val(value);
+    computePrices();
 });
 
 
@@ -29,6 +33,7 @@ $(document).on('click', '.btn-plus', function (e) {
     }
 
     $input.val(value);
+    computePrices();
 });
 
 
@@ -41,15 +46,15 @@ $(document).on('click', ".btn-delete", function (e) {
     $item.remove();
 
     console.log("delete");
+    computePrices();
 });
 
 $(document).on('click', '.js-delete-all', function (e) {
     e.preventDefault();
     var $this = $(this);
     var $list = $('.products__list');
-
     $list.empty();
-    productList.empty();
+    computePrices();
 });
 
 $('.js-btn-search').on('click', function (e) {
@@ -78,6 +83,7 @@ function getProduct(id) {
         }, function (data) {
             if (data !== '') {
                 populateOrIncrementProductList(data);
+                computePrices();
                 // console.log(data);
             } else {
                 alert("There is no product with code: " + id);
@@ -91,7 +97,7 @@ function getProduct(id) {
 function populateOrIncrementProductList(data) {
     console.log(data);
     var product = convertDataToProduct(data);
-    var element = getElementInList(product);
+    var element = getExistingElementFromProductsList(product);
     if (element != null) {
         incrementProductQuantity(element);
     }
@@ -120,7 +126,7 @@ function populateProductList(product) {
 
 }
 
-function getElementInList(product) {
+function getExistingElementFromProductsList(product) {
     var elements = document.getElementsByClassName("product");
     for (var i = 0; i < elements.length; i++) {
         var innerHTML = elements[i].getElementsByClassName('product__code')[0].innerHTML;
@@ -137,10 +143,42 @@ function incrementProductQuantity(element){
     var quantityInput=element.getElementsByClassName("quantity__input")[0];
     var quantity=parseInt(quantityInput.value,10);
     quantityInput.value=quantity+1;
+    computePrices();
 }
 
 function setQuantity(){
     var $this = $(this);
     var $input = $this.closest('div').find('input');
     var value = parseInt($input.val());
+    computePrices();
+}
+
+//TODO ADD METHOD TO HANDLE COUPON REQUEST
+
+function computePrices() {
+    var price=totalSumOfProducts();
+    document.getElementsByClassName("subtotal__value")[0].innerHTML=price+" RON";
+    var discount=getDiscount();
+    console.log(discount);
+    var discountedPrice=(1-discount/100)*price;
+    document.getElementsByClassName("total__value")[0].innerHTML=discountedPrice+" RON";
+}
+
+function totalSumOfProducts(){
+    var ul= document.getElementsByClassName("products__list")[0];
+    var sum=0;
+    var products= ul.getElementsByClassName("product");
+        [].forEach.call(products,
+        (item,index)=>{
+            var quantity=item.getElementsByClassName("quantity__input")[0].value;
+            var price=item.getElementsByClassName("price__value")[0].innerHTML;
+            sum+=quantity*price;
+        }
+    );
+    return sum;
+}
+
+function getDiscount(){
+    var discount=document.getElementsByClassName("discount__value")[0].innerHTML;
+    return discount.match('[0-9]+')[0];
 }

@@ -5,6 +5,12 @@
 
 <body>
 
+<script th:inline="javascript">
+    var products = /*[[${value}]]*/ null;
+    console.log(products);
+</script>
+
+
 <script id="productItem" type="text/x-handlebars-template">
     <li class="product">
         <img src="{{{image}}}" alt="picture of product" class="product__image">
@@ -35,6 +41,26 @@
             <div class="wrapper">
                 <div class="products__container">
                     <ul class="products__list">
+                        <th:block th:each="product :${products}">
+                            <li class="product">
+                                <img th:src="${product.image}" alt="picture of product" class="product__image">
+                                <div class="product__data">
+                                    <h2 class="product__title" th:text="${product.name}"/>
+                                    <h4 class="product__code" th:text="'BARCODE:'+${product.id}"/>
+                                </div>
+                                <div class="product__quantity">
+                                    <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
+                                    <input class="quantity__input" type="text" name="quantity"
+                                           th:value="${map.get(product.id)}">
+                                    <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
+                                </div>
+                                <div class="product__price">
+                                    <p class="price__label">Price</p>
+                                    <p class="price__value" th:text="${product.price}"/>
+                                </div>
+                                <button class="btn btn-delete far fa-trash-alt"></button>
+                            </li>
+                        </th:block>
                     </ul>
                 </div>
                 <div class="action">
@@ -79,16 +105,16 @@
                 <div class="subtotal-container">
                     <div class="subtotal__row">
                         <p class="subtotal__label">Subtotal</p>
-                        <p class="subtotal__value">200000 RON</p>
+                        <p class="subtotal__value" th:text="${initialPrice}? ${initialPrice}+' RON': '0 RON'"/>
                     </div>
                     <div class="subtotal__row">
                         <p class="discount__label">Discount</p>
-                        <p class="discount__value">0%</p>
+                        <p class="discount__value" th:text="${discountPercentage!=null}? ${discountedPrice}+'%': '0%'"/>
                     </div>
                 </div>
                 <div class="total-container">
                     <p class="total__label">Total</p>
-                    <p class="total__value">200000 RON</p>
+                    <p class="total__value" th:text="${finalPrice}? ${finalPrice}+' RON': '0 RON'"/>
                 </div>
                 <button class="btn btn-confirm">Confirm</button>
             </div>
