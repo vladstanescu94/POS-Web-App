@@ -8,5 +8,5 @@
 
     <include file="changelog/01-create-product-role-and-seller-schema.xml" relativeToChangelogFile="true"/>
     <include file="changelog/02-insert-dummy-values.xml" relativeToChangelogFile="true"/>
-
+    <include file="changelog/03-create-coupon-schema.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
