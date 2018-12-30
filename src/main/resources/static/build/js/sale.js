@@ -10,13 +10,20 @@ $(document).on('click', '.btn-minus', function (e) {
     var value = parseInt($input.val());
 
     if (value > 1) {
-        value = value - 1;
-    } else {
-        value = 1;
+        var id=$this.closest('.product').find('.product__code');
+        id=id[0].innerHTML.match('[0-9]+')[0];
+        $.get("/api/decreaseQuantity", {
+            id: id
+        }, function (data) {
+            if (data === 'decreaseSuccess') {
+                value=value -1;
+                $input.val(value);
+                computePrices();
+            } else {
+                alert("Something Went Wrong");
+            }
+        });
     }
-
-    $input.val(value);
-    computePrices();
 });
 
 
@@ -26,33 +33,55 @@ $(document).on('click', '.btn-plus', function (e) {
     var $input = $this.closest('div').find('input');
     var value = parseInt($input.val());
 
-    if (value < 100) {
-        value = value + 1;
-    } else {
-        value = 100;
-    }
-
-    $input.val(value);
-    computePrices();
+    var id=$this.closest('.product').find('.product__code');
+    id=id[0].innerHTML.match('[0-9]+')[0];
+    $.get("/api/increaseQuantity", {
+        id: id
+    }, function (data) {
+        if (data === 'increaseSuccess') {
+            value=value +1;
+            $input.val(value);
+            computePrices();
+        }
+        else if(data==='EOS'){
+            alert("OUT OF STOCK");
+        }
+        else {
+            alert("Something Went Wrong");
+        }
+    });
 });
 
 
 //TODO IF MORE THAN 1 IN QUANTITY ASK IF HE WANTS TO REMOVE ALL PRODUCTS
-$(document).on('click', ".btn-delete", function (e) {
+$(document).on('click', ".btn-delete.far", function (e) {
     e.preventDefault();
     var $this = $(this);
     var $item = $this.closest('li');
 
-    $item.remove();
-
-    console.log("delete");
-    computePrices();
+    var id=$this.closest('.product').find('.product__code');
+    id=id[0].innerHTML.match('[0-9]+')[0];
+    $.get("/api/removeProduct", {
+        id: id
+    }, function (data) {
+        if (data === 'removeSuccess') {
+            $item.remove();
+            computePrices();
+        }
+        else if(data==='noProduct'){
+            alert("THERE WAS NO PRODUCT ON SERVER");
+        }
+        else {
+            alert("Something Went Wrong");
+        }
+    });
 });
 
 $(document).on('click', '.js-delete-all', function (e) {
     e.preventDefault();
     var $this = $(this);
     var $list = $('.products__list');
+    $.post("/api/removeAllProducts");
     $list.empty();
     computePrices();
 });

@@ -22,7 +22,7 @@
         </div>
         <div class="product__quantity">
             <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
-            <input class="quantity__input" type="text" name="quantity" value="1">
+            <input class="quantity__input" type="text" name="quantity" value="1" disabled>
             <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
         </div>
         <div class="product__price">
@@ -51,7 +51,7 @@
                                 <div class="product__quantity">
                                     <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
                                     <input class="quantity__input" type="text" name="quantity"
-                                           th:value="${map.get(product.id)}">
+                                           th:value="${map.get(product.id)}" disabled>
                                     <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
                                 </div>
                                 <div class="product__price">
