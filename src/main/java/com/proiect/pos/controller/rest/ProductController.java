@@ -31,7 +31,25 @@ public class ProductController {
         Product product = null;
         if (productExists != null) {
             product = productExists;
-            updateInvoiceQuantityOfProduct(id, 1, request);
+            Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
+            List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
+            boolean itemNotFound = true;
+            for (InvoiceItem item : invoiceItems) {
+                Integer itemId = item.getProduct().getId();
+                Integer productId = id;
+                if (itemId == productId) {
+                    int itemQty = item.getQuantity();
+                    item.setQuantity(itemQty + 1);
+                    itemNotFound = false;
+                }
+            }
+            if (itemNotFound) {
+                InvoiceItem item = new InvoiceItem();
+                item.setQuantity(1);
+                item.setProduct(product);
+                invoiceItems.add(item);
+            }
+            request.getSession().setAttribute("invoice", invoice);
         }
         return product;
     }
@@ -40,64 +58,83 @@ public class ProductController {
     @RequestMapping(path = "/removeProduct", method = RequestMethod.GET)
     public String removeProductFromInvoice(int id, HttpServletRequest request) {
         Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
-        Map<Integer, Integer> products = invoice.getShoppingCart();
-        if (!products.containsKey(id)) {
-            return "noProduct";
+        List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
+        for (InvoiceItem item : invoiceItems) {
+            Integer productId = item.getProduct().getId();
+            if (id == productId) {
+                invoiceItems.remove(item);
+                request.getSession().setAttribute("invoice", invoice);
+                return "removeSuccess";
+            }
         }
-        products.remove(id);
-        request.getSession().setAttribute("invoice", invoice);
-        return "removeSuccess";
+        return "ERROR";
     }
 
     @RequestMapping(path = "/removeAllProducts", method = RequestMethod.POST)
     public void removeAllProductsFromInvoice(HttpServletRequest request) {
         Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
-        Map<Integer, Integer> products = invoice.getShoppingCart();
-        products.clear();
+        invoice.getInvoiceItems().clear();
         request.getSession().setAttribute("invoice", invoice);
     }
 
     @RequestMapping(path = "/increaseQuantity", method = RequestMethod.GET)
     public String increaseProductQuantity(int id, HttpServletRequest request) {
-
-        if (hasProductStock(id, 0, request)) {
-            updateInvoiceQuantityOfProduct(id, 1, request);
-            return "increaseSuccess";
+        Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
+        List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
+        for (InvoiceItem item : invoiceItems) {
+            Product product = item.getProduct();
+            Integer productId = product.getId();
+            if (id == productId) {
+                int stock = product.getStock();
+                int alreadySelectedQty = item.getQuantity();
+                if (stock > alreadySelectedQty) {
+                    alreadySelectedQty++;
+                    item.setQuantity(alreadySelectedQty);
+                }
+                request.getSession().setAttribute("invoice", invoice);
+                return "increaseSuccess";
+            }
         }
         return "EOS";
     }
 
     @RequestMapping(path = "/decreaseQuantity", method = RequestMethod.GET)
     public String decreaseProductQuantity(int id, HttpServletRequest request) {
-        updateInvoiceQuantityOfProduct(id, -1, request);
+        Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
+        List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
+        for (InvoiceItem item : invoiceItems) {
+            Product product = item.getProduct();
+            Integer productId = product.getId();
+            if (id == productId) {
+                int alreadySelectedQty = item.getQuantity();
+                alreadySelectedQty--;
+                item.setQuantity(alreadySelectedQty);
+                request.getSession().setAttribute("invoice", invoice);
+            }
+        }
         return "decreaseSuccess";
     }
 
+
     @RequestMapping(path = "/customQuantity", method = RequestMethod.GET)
     public String setCustomQuantity(int id, int quantity, HttpServletRequest request) {
-        if (hasProductStock(id, quantity, request)) {
-            updateInvoiceQuantityOfProduct(id, quantity, request);
-            return "customSuccess";
+        Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
+        List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
+        for (InvoiceItem item : invoiceItems) {
+            Product product = item.getProduct();
+            Integer productId = product.getId();
+            if (id == productId) {
+                int stock = product.getStock();
+                int alreadySelectedQty = item.getQuantity();
+                if (stock >= alreadySelectedQty + quantity) {
+                    alreadySelectedQty += quantity;
+                    item.setQuantity(alreadySelectedQty);
+                }
+                request.getSession().setAttribute("invoice", invoice);
+                return "customSuccess";
+            }
         }
         return "EOS";
-    }
-
-
-    private void updateInvoiceQuantityOfProduct(int id, int ammount, HttpServletRequest request) {
-        Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
-        Map<Integer, Integer> products = invoice.getShoppingCart();
-        int count = products.containsKey(id) ? products.get(id) : 0;
-        products.put(id, count + ammount);
-        request.getSession().setAttribute("invoice", invoice);
-    }
-
-    private boolean hasProductStock(int id, int minValue, HttpServletRequest request) {
-        Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
-        int productSelectedQuantity = invoice.getShoppingCart().get(id);
-        int productStock = productService.findById(id).getStock();
-        if (productStock - productSelectedQuantity > minValue)
-            return true;
-        return false;
     }
 
 
