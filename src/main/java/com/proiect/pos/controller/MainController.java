@@ -1,9 +1,6 @@
 package com.proiect.pos.controller;
 
-import com.proiect.pos.model.Coupon;
-import com.proiect.pos.model.Invoice;
-import com.proiect.pos.model.Product;
-import com.proiect.pos.model.Seller;
+import com.proiect.pos.model.*;
 import com.proiect.pos.service.ProductService;
 import com.proiect.pos.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,11 +40,11 @@ public class MainController {
             List<Product> products = new ArrayList<>();
             Map<Integer, Integer> productsMap = invoice.getShoppingCart();
 
-            for (Map.Entry<Integer, Integer> entry : productsMap.entrySet()) {
-                products.add(productService.findById(entry.getKey()));
+            List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
+            for (InvoiceItem item : invoiceItems) {
+                products.add(item.getProduct());
             }
-            modelAndView.addObject("products", products);
-            modelAndView.addObject("map", productsMap);
+            modelAndView.addObject("invoiceItems", invoiceItems);
         }
 //            modelAndView.setViewName("sale");
         return modelAndView;
@@ -75,7 +72,7 @@ public class MainController {
         Seller seller = sellerService.findByUsername(user.getUsername());
         invoice.setId(System.currentTimeMillis() / 1000);
         invoice.setPurchaseDate(new Date());
-        invoice.setSellerId(seller.getId());
+//        invoice.setSellerId(seller.getId());
 
         List<Product> products = new ArrayList<>();
         Map<Integer, Integer> productsMap = invoice.getShoppingCart();

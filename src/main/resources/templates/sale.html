@@ -41,22 +41,22 @@
             <div class="wrapper">
                 <div class="products__container">
                     <ul class="products__list">
-                        <th:block th:each="product :${products}">
+                        <th:block th:each="item :${invoiceItems}">
                             <li class="product">
-                                <img th:src="${product.image}" alt="picture of product" class="product__image">
+                                <img th:src="${item.product.image}" alt="picture of product" class="product__image">
                                 <div class="product__data">
-                                    <h2 class="product__title" th:text="${product.name}"/>
-                                    <h4 class="product__code" th:text="'BARCODE:'+${product.id}"/>
+                                    <h2 class="product__title" th:text="${item.product.name}"/>
+                                    <h4 class="product__code" th:text="'BARCODE:'+${item.product.id}"/>
                                 </div>
                                 <div class="product__quantity">
                                     <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
                                     <input class="quantity__input" type="text" name="quantity"
-                                           th:value="${map.get(product.id)}" disabled>
+                                           th:value="${item.quantity}" disabled>
                                     <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
                                 </div>
                                 <div class="product__price">
                                     <p class="price__label">Price</p>
-                                    <p class="price__value" th:text="${product.price}"/>
+                                    <p class="price__value" th:text="${item.product.price}"/>
                                 </div>
                                 <button class="btn btn-delete far fa-trash-alt"></button>
                             </li>
