@@ -3,14 +3,13 @@ package com.proiect.pos.controller.rest;
 import com.proiect.pos.model.Invoice;
 import com.proiect.pos.model.InvoiceItem;
 import com.proiect.pos.model.Product;
-import com.proiect.pos.repository.ProductRepository;
 import com.proiect.pos.repository.SellerRepository;
 import com.proiect.pos.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -38,25 +37,22 @@ public class ProductController {
     }
 
 
-    @RequestMapping(path="/removeProduct",method=RequestMethod.GET)
-    public String removeProductFromInvoice(int id,HttpServletRequest request)
-    {
+    @RequestMapping(path = "/removeProduct", method = RequestMethod.GET)
+    public String removeProductFromInvoice(int id, HttpServletRequest request) {
         Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
-        Map<Integer, Integer> products = invoice.getProducts();
-        if(products.containsKey(id))
-        {
-            products.remove(id);
-            request.getSession().setAttribute("invoice", invoice);
-            return "removeSuccess";
+        Map<Integer, Integer> products = invoice.getShoppingCart();
+        if (!products.containsKey(id)) {
+            return "noProduct";
         }
-        return "noProduct";
+        products.remove(id);
+        request.getSession().setAttribute("invoice", invoice);
+        return "removeSuccess";
     }
 
-    @RequestMapping(path="/removeAllProducts",method=RequestMethod.POST)
-    public void removeAllProductsFromInvoice(HttpServletRequest request)
-    {
+    @RequestMapping(path = "/removeAllProducts", method = RequestMethod.POST)
+    public void removeAllProductsFromInvoice(HttpServletRequest request) {
         Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
-        Map<Integer, Integer> products = invoice.getProducts();
+        Map<Integer, Integer> products = invoice.getShoppingCart();
         products.clear();
         request.getSession().setAttribute("invoice", invoice);
     }
@@ -80,7 +76,7 @@ public class ProductController {
     @RequestMapping(path = "/customQuantity", method = RequestMethod.GET)
     public String setCustomQuantity(int id, int quantity, HttpServletRequest request) {
         if (hasProductStock(id, quantity, request)) {
-            updateInvoiceQuantityOfProduct(id,quantity,request);
+            updateInvoiceQuantityOfProduct(id, quantity, request);
             return "customSuccess";
         }
         return "EOS";
@@ -89,7 +85,7 @@ public class ProductController {
 
     private void updateInvoiceQuantityOfProduct(int id, int ammount, HttpServletRequest request) {
         Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
-        Map<Integer, Integer> products = invoice.getProducts();
+        Map<Integer, Integer> products = invoice.getShoppingCart();
         int count = products.containsKey(id) ? products.get(id) : 0;
         products.put(id, count + ammount);
         request.getSession().setAttribute("invoice", invoice);
@@ -97,10 +93,12 @@ public class ProductController {
 
     private boolean hasProductStock(int id, int minValue, HttpServletRequest request) {
         Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
-        int productSelectedQuantity = invoice.getProducts().get(id);
+        int productSelectedQuantity = invoice.getShoppingCart().get(id);
         int productStock = productService.findById(id).getStock();
         if (productStock - productSelectedQuantity > minValue)
             return true;
         return false;
     }
+
+
 }
