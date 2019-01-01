@@ -2,6 +2,7 @@ package com.proiect.pos.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -17,29 +18,32 @@ public class Invoice {
 
     private Date purchaseDate;
 
+    @Column(name="seller_id")
     private int sellerId;
 
-//    @OneToOne
-//    @JoinColumn(name="seller_id",insertable = false, updatable = false)
-//    private Seller seller;
-
+    @Column(name="coupon_id")
     private int couponId;
-
-//    @OneToOne
-//    @JoinColumn(name="coupon_id",insertable = false, updatable = false)
-//    private Coupon coupon;
 
     private BigDecimal initialPrice = BigDecimal.ZERO;
 
     private BigDecimal discountedPrice = BigDecimal.ZERO;
 
-    @Transient
-    List<InvoiceItem> invoiceItems=new ArrayList<>();
 
+    //TODO REMOVE THIS
     @Transient
-    Map<Integer,Integer> shoppingCart =new HashMap<>();
+    Map<Integer,Integer> shoppingCart=new HashMap<>();
 
-//    @ManyToMany
-//    private Set<InvoiceItem> items;
+
+    @OneToMany(mappedBy = "invoice",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<InvoiceItem> invoiceItems=new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name="seller_id", insertable = false, updatable = false)
+    private Seller seller;
+
+    @OneToOne
+    @JoinColumn(name="coupon_id",insertable = false,updatable = false)
+    private Coupon coupon;
+
 
 }
