@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head"/>
+
 <body>
-$END$
+<div class="app-container">
+    <header th:replace="fragments/navbar ::header">
+    </header>
+    <div class="main">
+        <div class="container">
+            <div th:if="${quantity.isEmpty()}">
+                THERE"S NO PRODUCT!
+                <a href="/sale">ADD A PRODUCT!!</a>
+            </div>
+            <label th:unless="${quantity.isEmpty()}">
+                ID of the transaction: <span th:text="${invoice.id}"></span><br>
+                Date of transaction <span th:text="${invoice.purchaseDate}"/><br>
+                Transaction performed by <span th:text="${seller.firstName}+' '+${seller.lastName}"/><br>
+                Discount code: <span th:text="${coupon.code}"/><br>
+                Discount percentage: <span th:text="${coupon.discountPercentage}+'%'"/><br>
+                Initial price: <span th:text="${invoice.initialPrice}+' RON'"/><br>
+                Final price: <span th:text="${invoice.discountedPrice}+' RON'"/><br>
+
+                List of Products:<br>
+                <th:block th:each="product :${products}">
+
+                    <span th:text="${quantity.get(product.id)}+' x '"/>
+                    <span th:text="${product.name}+' '"/>
+                    <span th:text="'- '+${product.price}+' RON'"/>
+                    <span th:text="'---- Computed Price: '+${quantity.get(product.id)*product.price}+' RON'"/>
+                    <br>
+
+                </th:block>
+                <br><br>
+                <!--TODO REPLACE WITH BETTER URL-->
+                <a href="/needBetterUrlForThis" style="color: #FF1C19;">
+                    PROCEED
+                </a>
+            </label>
+        </div>
+    </div>
+</div>
 </body>
 </html>
