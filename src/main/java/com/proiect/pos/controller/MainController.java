@@ -4,16 +4,19 @@ import com.proiect.pos.model.Product;
 import com.proiect.pos.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
 @Controller
 public class MainController {
-
 
     @Autowired
     private ProductService productService;
@@ -35,32 +38,17 @@ public class MainController {
     }
 
 
-    @RequestMapping(value = "dashboard", method = RequestMethod.GET)
-    public ModelAndView getAddProductPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        Product product = new Product();
-        modelAndView.addObject("product", product);
-        modelAndView.setViewName("dashboard");
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "dashboard", method = RequestMethod.POST)
-    public ModelAndView createNewProduct(@Valid Product product, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
-        Product productExists = productService.findById(product.getId());
-        if (productExists != null) {
-            bindingResult.rejectValue("id", "error.product",
-                    "There's already a product with this barcode");
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public Model getDashboardPage(Model model)
+    {
+        if (!model.containsAttribute("product"))
+        {
+            model.addAttribute("product", new Product());
         }
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("dashboard");
-        } else {
-            productService.saveProduct(product);
-            modelAndView.addObject("successMessage", "Product has been added successfully");
-            modelAndView.addObject("product", new Product());
-            modelAndView.setViewName("dashboard");
-        }
-        return modelAndView;
-    }
 
+//        Product product = new Product();
+//        modelAndView.addObject("product", product);
+//        modelAndView.setViewName("dashboard");
+        return model;
+    }
 }
