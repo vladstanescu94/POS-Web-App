@@ -1,6 +1,7 @@
 package com.proiect.pos.controller;
 
 import com.proiect.pos.model.*;
+import com.proiect.pos.service.CouponService;
 import com.proiect.pos.service.InvoiceService;
 import com.proiect.pos.service.ProductService;
 import com.proiect.pos.service.SellerService;
@@ -41,7 +42,6 @@ public class MainController {
         if (invoice == null) {
             request.getSession().setAttribute("invoice", new Invoice());
         } else {
-            modelAndView.addObject("value", invoice);
             List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
             modelAndView.addObject("invoiceItems", invoiceItems);
         }
@@ -54,35 +54,33 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView();
         Product[] products = productService.findAllByStockGreaterThanEqual(1);
         modelAndView.addObject("products", products);
-//        modelAndView.setViewName("allProducts");
         return modelAndView;
     }
 
+
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)
     public ModelAndView proceedToCheckout(HttpServletRequest request) {
+
         Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
         if (invoice == null) {
             return new ModelAndView("redirect:/sale");
         }
+
         ModelAndView modelAndView = new ModelAndView();
+
+        invoice.setId(System.currentTimeMillis() / 1000);
+
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Seller seller = sellerService.findByUsername(user.getUsername());
-        invoice.setId(System.currentTimeMillis() / 1000);
-        invoice.setPurchaseDate(new Date());
         invoice.setSeller(seller);
-        BigDecimal initialPrice = BigDecimal.ZERO;
-        List<InvoiceItem>invoiceItems=invoice.getInvoiceItems();
-        for(InvoiceItem item: invoiceItems)
-        {
-            BigDecimal qty=new BigDecimal(item.getQuantity());
-            BigDecimal price=item.getProduct().getPrice();
-            initialPrice=initialPrice.add(price.multiply(qty));
-        }
 
-        BigDecimal discountedPrice = initialPrice;
-        invoice.setDiscountedPrice(discountedPrice);
+        List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
+
+        BigDecimal initialPrice = computeInitialPrice(invoiceItems);
+        BigDecimal discountedPrice = computeDiscountedPrice(initialPrice, new Coupon());
+
         invoice.setInitialPrice(initialPrice);
-
+        invoice.setDiscountedPrice(discountedPrice);
 
         modelAndView.addObject("invoice", invoice);
         modelAndView.addObject("seller", seller);
@@ -92,10 +90,32 @@ public class MainController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/needBetterUrlForThis",method = RequestMethod.GET)
-    public String finalizeTransaction(HttpServletRequest request)
-    {
-        Invoice invoice=(Invoice)request.getSession().getAttribute("invoice");
+
+    private BigDecimal computeDiscountedPrice(BigDecimal initialPrice, Coupon coupon) {
+
+        BigDecimal discountedPrice = initialPrice;
+        int discountPercentage = coupon.getDiscountPercentage();
+        double computedPercentage = (100 - discountPercentage) / 100d;
+        BigDecimal discount = new BigDecimal(computedPercentage);
+        discountedPrice = discountedPrice.multiply(discount);
+        return discountedPrice;
+    }
+
+
+    private BigDecimal computeInitialPrice(List<InvoiceItem> invoiceItems) {
+        BigDecimal initialPrice = BigDecimal.ZERO;
+        for (InvoiceItem item : invoiceItems) {
+            BigDecimal qty = new BigDecimal(item.getQuantity());
+            BigDecimal price = item.getProduct().getPrice();
+            initialPrice = initialPrice.add(price.multiply(qty));
+        }
+        return initialPrice;
+    }
+
+
+    @RequestMapping(value = "/needBetterUrlForThis", method = RequestMethod.GET)
+    public String finalizeTransaction(HttpServletRequest request) {
+        Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
         invoiceService.saveInvoice(invoice);
         return "home";
     }

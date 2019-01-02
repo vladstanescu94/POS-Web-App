@@ -26,18 +26,15 @@ public class ProductController {
     //TODO RENAME INTO BETTER URL
     @RequestMapping(path = "/getProductID", method = RequestMethod.GET)
     public Product getProductId(int id, HttpServletRequest request) {
-        System.out.println("COD VALUE IS:" + id);
-        Product productExists = productService.findById(id);
-        Product product = null;
-        if (productExists != null) {
-            product = productExists;
+        Product product = productService.findById(id);
+
+        if (product != null) {
             Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
             List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
             boolean itemNotFound = true;
             for (InvoiceItem item : invoiceItems) {
-                Integer itemId = item.getProduct().getId();
-                Integer productId = id;
-                if (itemId == productId) {
+                int itemId = item.getProduct().getId();
+                if (itemId == id) {
                     int itemQty = item.getQuantity();
                     item.setQuantity(itemQty + 1);
                     itemNotFound = false;
@@ -52,6 +49,7 @@ public class ProductController {
             }
             request.getSession().setAttribute("invoice", invoice);
         }
+
         return product;
     }
 
@@ -61,7 +59,8 @@ public class ProductController {
         Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
         List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
         for (InvoiceItem item : invoiceItems) {
-            Integer productId = item.getProduct().getId();
+            Product product=item.getProduct();
+            int productId = product.getId();
             if (id == productId) {
                 invoiceItems.remove(item);
                 request.getSession().setAttribute("invoice", invoice);
@@ -84,16 +83,16 @@ public class ProductController {
         List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
         for (InvoiceItem item : invoiceItems) {
             Product product = item.getProduct();
-            Integer productId = product.getId();
+            int productId = product.getId();
             if (id == productId) {
                 int stock = product.getStock();
                 int alreadySelectedQty = item.getQuantity();
                 if (stock > alreadySelectedQty) {
                     alreadySelectedQty++;
                     item.setQuantity(alreadySelectedQty);
+                    request.getSession().setAttribute("invoice", invoice);
+                    return "increaseSuccess";
                 }
-                request.getSession().setAttribute("invoice", invoice);
-                return "increaseSuccess";
             }
         }
         return "EOS";
@@ -105,7 +104,7 @@ public class ProductController {
         List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
         for (InvoiceItem item : invoiceItems) {
             Product product = item.getProduct();
-            Integer productId = product.getId();
+            int productId = product.getId();
             if (id == productId) {
                 int alreadySelectedQty = item.getQuantity();
                 alreadySelectedQty--;
@@ -117,8 +116,9 @@ public class ProductController {
     }
 
 
+    //TODO IMPLEMENT COUNTERPART ON FRONT_END
     @RequestMapping(path = "/customQuantity", method = RequestMethod.GET)
-    public String setCustomQuantity(int id, int quantity, HttpServletRequest request) {
+    public String setCustomQuantity(int id, int desiredQty, HttpServletRequest request) {
         Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
         List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
         for (InvoiceItem item : invoiceItems) {
@@ -127,8 +127,8 @@ public class ProductController {
             if (id == productId) {
                 int stock = product.getStock();
                 int alreadySelectedQty = item.getQuantity();
-                if (stock >= alreadySelectedQty + quantity) {
-                    alreadySelectedQty += quantity;
+                if (stock >= alreadySelectedQty + desiredQty) {
+                    alreadySelectedQty += desiredQty;
                     item.setQuantity(alreadySelectedQty);
                 }
                 request.getSession().setAttribute("invoice", invoice);
