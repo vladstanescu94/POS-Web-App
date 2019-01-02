@@ -32,7 +32,7 @@ public class CouponService {
         return -1;
     }
 
-    private boolean isCouponValid(Coupon coupon) {
+    public boolean isCouponValid(Coupon coupon) {
         Date currentDate = new Date();
         if (currentDate.compareTo(coupon.getExpiryDate()) <= 0)
             return true;

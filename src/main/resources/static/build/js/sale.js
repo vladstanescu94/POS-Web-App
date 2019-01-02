@@ -211,3 +211,57 @@ function getDiscount(){
     var discount=document.getElementsByClassName("discount__value")[0].innerHTML;
     return discount.match('[0-9]+')[0];
 }
+
+function checkCoupon(){
+    var input = document.getElementsByClassName("modal__input")[0];
+    console.log(input);
+    var code=input.value;
+    if (code !== '') {
+        $.get("/coupon/check", {
+            code: code
+        }, function (data) {
+            if (data !== '') {
+                if(data>0)
+                {
+                    console.log(data);
+                    // At first apply button should be greyed out & disabled
+
+                    // TODO
+                    // Should enable Apply button
+                    // Should make itself green indicating coupon is valid
+                }
+                else{
+                    // TODO
+                    // Should make itself red
+                }
+            } else {
+                alert("There was an error");
+            }
+        });
+    }
+
+}
+
+
+function applyCoupon() {
+    var input = document.getElementsByClassName("modal__input")[0];
+    var code=input.value;
+    if (code !== '') {
+        $.get("/coupon/apply", {
+            code: code
+        }, function (data) {
+            if (data !== '') {
+                if(data>0)
+                {
+                    var discountElement=document.getElementsByClassName("discount__value")[0];
+                    discountElement.innerHTML=data+"%";
+                    computePrices();
+                    document.getElementById('js-check-coupon').style.display='none';
+                    document.getElementsByClassName("js-btn-coupons")[0].disabled=true;
+                }
+            } else {
+                alert("There was an error");
+            }
+        });
+    }
+}
