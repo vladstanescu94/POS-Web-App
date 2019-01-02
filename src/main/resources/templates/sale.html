@@ -58,7 +58,19 @@
                 </div>
                 <div class="action">
                     <button class="btn js-btn-promotions">Promotions</button>
-                    <button class="btn js-btn-coupons">Coupons</button>
+                    <div class="modal" id="js-check-coupon">
+                        <button class="close-button" onclick="document.getElementById('js-check-coupon').style.display='none'" >Close</button>
+                        <div class="modal__content">
+                            <form class="modal__form" action="" method="post">
+                                <input class="modal__input" name="coupon-code" type="text" placeholder="Insert Coupon Code" required>
+                                <div class="modal__action-wrapper">
+                                    <button class="btn -small js-check">Check</button>
+                                    <button class="btn -small js-apply-coupon" type="submit">Apply</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <button class="btn js-btn-coupons" onclick="document.getElementById('js-check-coupon').style.display='block'">Coupons</button>
                     <button class="btn js-btn-drawer">Open Drawer</button>
                     <button class="btn js-btn-cancel">Cancel Bill</button>
                     <button class="btn btn-delete -huge js-delete-all js-btn-delete-all">Delete All</button>

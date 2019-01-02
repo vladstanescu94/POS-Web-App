@@ -50,7 +50,20 @@
                         </ul>
                     </div>
                     <div class="action">
-                        <button class="btn ">Button1</button>
+                        <div class="modal" id="js-add-coupon">
+                            <button class="close-button" onclick="document.getElementById('js-add-coupon').style.display='none'" >Close</button>
+                            <div class="modal__content">
+                                <form class="modal__form" action="" method="post">
+                                    <input class="modal__input" name="coupon-code" type="text" placeholder="Insert Coupon Code" required>
+                                    <input class="modal__input" name="coupon-discount" type="text" placeholder="Insert Discount" required>
+                                    <input class="modal__input -date" name="coupon-date" type="date" required>
+                                    <div class="modal__action-wrapper">
+                                        <button class="btn -small js-confirm-coupon" type="submit">Add</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <button class="btn" onclick="document.getElementById('js-add-coupon').style.display='block'">Add Coupons</button>
                         <button class="btn ">Button2</button>
                         <button class="btn ">Button3</button>
                         <button class="btn ">Button4</button>
