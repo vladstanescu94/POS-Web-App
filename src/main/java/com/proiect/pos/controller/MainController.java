@@ -136,7 +136,7 @@ public class MainController {
             int boughtQty=item.getQuantity();
             int newStock=stock-boughtQty;
             product.setStock(newStock);
-            productService.saveProduct(product);
+            productService.updateProduct(product);
         }
     }
 

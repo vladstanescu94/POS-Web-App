@@ -670,10 +670,20 @@ a {
   padding: 1.25rem 0.625rem;
   margin: 0.9375rem 0;
 }
+.checkout__info {
+  padding: 2.5rem 0.625rem;
+  font-size: 1rem;
+}
 .checkout__header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.checkout__initial-price {
+  font-size: 1.125rem;
+}
+.checkout__final-price {
+  font-size: 1.25rem;
 }
 .checkout__list {
   width: 85%;
