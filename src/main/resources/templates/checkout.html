@@ -9,11 +9,11 @@
     </header>
     <div class="main">
         <div class="container">
-            <div th:if="${quantity.isEmpty()}">
+            <div th:if="${invoiceItems.isEmpty()}">
                 THERE"S NO PRODUCT!
                 <a href="/sale">ADD A PRODUCT!!</a>
             </div>
-            <label th:unless="${quantity.isEmpty()}">
+            <label th:unless="${invoiceItems.isEmpty()}">
                 ID of the transaction: <span th:text="${invoice.id}"></span><br>
                 Date of transaction <span th:text="${invoice.purchaseDate}"/><br>
                 Transaction performed by <span th:text="${seller.firstName}+' '+${seller.lastName}"/><br>
@@ -23,12 +23,12 @@
                 Final price: <span th:text="${invoice.discountedPrice}+' RON'"/><br>
 
                 List of Products:<br>
-                <th:block th:each="product :${products}">
+                <th:block th:each="item :${invoiceItems}">
 
-                    <span th:text="${quantity.get(product.id)}+' x '"/>
-                    <span th:text="${product.name}+' '"/>
-                    <span th:text="'- '+${product.price}+' RON'"/>
-                    <span th:text="'---- Computed Price: '+${quantity.get(product.id)*product.price}+' RON'"/>
+                    <span th:text="${item.quantity}+' x '"/>
+                    <span th:text="${item.product.name}+' '"/>
+                    <span th:text="'- '+${item.product.price}+' RON'"/>
+                    <span th:text="'---- Computed Price: '+${item.quantity*item.product.price}+' RON'"/>
                     <br>
 
                 </th:block>
