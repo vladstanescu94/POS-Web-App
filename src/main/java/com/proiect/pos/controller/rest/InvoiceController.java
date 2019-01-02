@@ -5,6 +5,7 @@ import com.proiect.pos.model.Coupon;
 import com.proiect.pos.model.Invoice;
 import com.proiect.pos.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,13 @@ public class InvoiceController {
             return coupon.getDiscountPercentage();
         }
         return -1;
+    }
+
+    @RequestMapping(value="/coupon/add",method = RequestMethod.POST)
+    public Coupon addCoupon(@RequestBody Coupon coupon)
+    {
+        couponService.save(coupon);
+        return coupon;
     }
 
 }

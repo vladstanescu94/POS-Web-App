@@ -56,7 +56,7 @@
                         <div class="modal" id="js-add-coupon">
                             <button class="close-button" onclick="document.getElementById('js-add-coupon').style.display='none'">Close</button>
                             <div class="modal__content">
-                                <form class="modal__form" action="" method="post">
+                                <div class="modal__form">
                                     <input class="modal__input" name="coupon-code" type="text" placeholder="Insert Coupon Code"
                                         required>
                                     <input class="modal__input" name="coupon-discount" type="text" placeholder="Insert Discount"
@@ -65,7 +65,8 @@
                                     <div class="modal__action-wrapper">
                                         <button class="btn -small js-confirm-coupon" type="submit">Add</button>
                                     </div>
-                                </form>
+                                    <label id="coupon-message"/>
+                                </div>
                             </div>
                         </div>
                         <button class="btn" onclick="document.getElementById('js-add-coupon').style.display='block'">Add
@@ -82,6 +83,7 @@
     </div>
     <div th:replace="fragments/footer :: footer" />
     <script th:src="@{/build/js/addProduct.js}"></script>
+    <script th:src="@{/build/js/addCoupon.js}"></script>
 </body>
 
 </html>

@@ -38,4 +38,8 @@ public class CouponService {
             return true;
         return false;
     }
+
+    public void save(Coupon coupon) {
+        couponRepository.save(coupon);
+    }
 }
