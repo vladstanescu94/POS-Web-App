@@ -113,7 +113,6 @@ function getProduct(id) {
             if (data !== '') {
                 populateOrIncrementProductList(data);
                 computePrices();
-                // console.log(data);
             } else {
                 alert("There is no product with code: " + id);
             }
@@ -124,7 +123,6 @@ function getProduct(id) {
 };
 
 function populateOrIncrementProductList(data) {
-    console.log(data);
     var product = convertDataToProduct(data);
     var element = getExistingElementFromProductsList(product);
     if (element != null) {
@@ -188,7 +186,6 @@ function computePrices() {
     var price=totalSumOfProducts();
     document.getElementsByClassName("subtotal__value")[0].innerHTML=price+" RON";
     var discount=getDiscount();
-    console.log(discount);
     var discountedPrice=(1-discount/100)*price;
     document.getElementsByClassName("total__value")[0].innerHTML=discountedPrice+" RON";
 }
@@ -214,7 +211,6 @@ function getDiscount(){
 
 function checkCoupon(){
     var input = document.getElementsByClassName("modal__input")[0];
-    console.log(input);
     var code=input.value;
     if (code !== '') {
         $.get("/coupon/check", {

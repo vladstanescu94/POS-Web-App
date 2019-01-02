@@ -25,7 +25,7 @@ $(".js-confirm-coupon").on('click', function (e) {
                 }, 3000);
         },
         error: function () {
-            logLabel.innerHTML="THERE WAS A ERROR. FUCK KNOWS WHAT";
+            logLabel.innerHTML="THERE WAS A ERROR";
         }
     });
 });
