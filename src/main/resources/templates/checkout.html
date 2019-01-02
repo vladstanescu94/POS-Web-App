@@ -1,45 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/head"/>
+<head th:replace="fragments/head" />
 
 <body>
-<div class="app-container">
-    <header th:replace="fragments/navbar ::header">
-    </header>
-    <div class="main">
-        <div class="container">
-            <div th:if="${invoiceItems.isEmpty()}">
-                THERE"S NO PRODUCT!
-                <a href="/sale">ADD A PRODUCT!!</a>
+    <div class="app-container">
+        <header th:replace="fragments/navbar ::header">
+        </header>
+        <div class="main">
+            <div class="container">
+                <div th:if="${invoiceItems.isEmpty()}">
+                    <span>THERE"S NO PRODUCT!</span> 
+                    <a href="/sale">ADD A PRODUCT!!</a>
+                </div>
+                <div class="checkout__container" th:unless="${invoiceItems.isEmpty()}">
+                    <div class="checkout__header">
+                        <p class="checkout__author">Transaction author: <span th:text="${seller.firstName}+' '+${seller.lastName}" /></p>
+                        <p class="checkout__date"><span th:text="${invoice.purchaseDate}" /></p>
+                    </div>
+                    <h1 class="checkout__intro">Invoice nr. <span th:text="${invoice.id}"></span></h1>
+                    <ul class="checkout__list">
+                        <h4 class="list__intro">List of Products</h4>
+                        <th:block th:each="item :${invoiceItems}">
+                            <li class="checkout__item">
+                                <div class="checkout__column">
+                                    <span th:text="${item.quantity}+' x '" />
+                                    <span th:text="${item.product.name}+' '" />
+                                    <span th:text="'- '+${item.product.price}+' RON'" />
+                                </div>
+                                <div class="checkout__column -right">
+                                    <span>---- Computed Price:</span>
+                                    <span th:text="${item.quantity*item.product.price}+ ' RON'" />
+                                </div>
+                            </li>
+                        </th:block>
+                    </ul>
+                    <div class="checkout__info">
+                        <p class="checkout__discount-code">Discount code: <span th:text="${coupon.code}" /></p>
+                        <p class="checkout__discount-percentage">Discount percentage: <span th:text="${coupon.discountPercentage}+'%'" /></p>
+                        <p class="checkout__initial-price">Initial price: <span th:text="${invoice.initialPrice}+' RON'" /></p>
+                        <p class="checkout__final-price">Final price: <span th:text="${invoice.discountedPrice}+' RON'" /></p>
+                    </div>
+                    
+                    
+                    <!--TODO REPLACE WITH BETTER URL-->
+                    <a class="checkout__link" href="/needBetterUrlForThis">
+                        Proceed
+                    </a>
+                </div>
             </div>
-            <label th:unless="${invoiceItems.isEmpty()}">
-                ID of the transaction: <span th:text="${invoice.id}"></span><br>
-                Date of transaction <span th:text="${invoice.purchaseDate}"/><br>
-                Transaction performed by <span th:text="${seller.firstName}+' '+${seller.lastName}"/><br>
-                Discount code: <span th:text="${coupon.code}"/><br>
-                Discount percentage: <span th:text="${coupon.discountPercentage}+'%'"/><br>
-                Initial price: <span th:text="${invoice.initialPrice}+' RON'"/><br>
-                Final price: <span th:text="${invoice.discountedPrice}+' RON'"/><br>
-
-                List of Products:<br>
-                <th:block th:each="item :${invoiceItems}">
-
-                    <span th:text="${item.quantity}+' x '"/>
-                    <span th:text="${item.product.name}+' '"/>
-                    <span th:text="'- '+${item.product.price}+' RON'"/>
-                    <span th:text="'---- Computed Price: '+${item.quantity*item.product.price}+' RON'"/>
-                    <br>
-
-                </th:block>
-                <br><br>
-                <!--TODO REPLACE WITH BETTER URL-->
-                <a href="/needBetterUrlForThis" style="color: #FF1C19;">
-                    PROCEED
-                </a>
-            </label>
         </div>
     </div>
-</div>
 </body>
+
 </html>

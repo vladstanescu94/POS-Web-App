@@ -58,7 +58,19 @@
                 </div>
                 <div class="action">
                     <button class="btn js-btn-promotions">Promotions</button>
-                    <button class="btn js-btn-coupons">Coupons</button>
+                    <div class="modal" id="js-check-coupon">
+                        <button class="close-button" onclick="document.getElementById('js-check-coupon').style.display='none'" >Close</button>
+                        <div class="modal__content">
+                            <div class="modal__form">
+                                <input class="modal__input" name="coupon-code" type="text" placeholder="Insert Coupon Code" required>
+                                <div class="modal__action-wrapper">
+                                    <button class="btn -small js-check" onclick="checkCoupon()">Check</button>
+                                    <button class="btn -small js-apply-coupon" onclick="applyCoupon()">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn js-btn-coupons" onclick="document.getElementById('js-check-coupon').style.display='block'">Coupons</button>
                     <button class="btn js-btn-drawer">Open Drawer</button>
                     <button class="btn js-btn-cancel">Cancel Bill</button>
                     <button class="btn btn-delete -huge js-delete-all js-btn-delete-all">Delete All</button>
@@ -90,7 +102,7 @@
                             </div>
                         </div>
                         <div class="functions-container">
-                            <button class="btn btn-delete -small">Del</button>
+                            <button class="btn btn-delete -small js-key-del">Del</button>
                             <button type="button" class="btn btn-confirm -extra js-btn-search">Ent</button>
                         </div>
                     </div>
@@ -102,7 +114,7 @@
                     </div>
                     <div class="subtotal__row">
                         <p class="discount__label">Discount</p>
-                        <p class="discount__value" th:text="${discountPercentage!=null}? ${discountedPrice}+'%': '0%'"/>
+                        <p class="discount__value" th:text="${discountPercentage!=null}? ${discountPercentage}+'%': '0%'"/>
                     </div>
                 </div>
                 <div class="total-container">

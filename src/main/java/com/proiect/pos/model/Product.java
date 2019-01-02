@@ -19,7 +19,7 @@ public class Product {
     private String name;
 
     @NotNull(message = "Please provide the stock available")
-    @Min(1)
+    @Min(0)
     private int stock;
 
 //    @NotEmpty(message = "Please provide the price of the product")

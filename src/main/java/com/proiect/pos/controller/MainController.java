@@ -49,7 +49,10 @@ public class MainController {
             request.getSession().setAttribute("invoice", new Invoice());
         } else {
             List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
+            Coupon coupon=invoice.getCoupon();
+            coupon=(coupon!=null)? coupon:new Coupon();
             modelAndView.addObject("invoiceItems", invoiceItems);
+            modelAndView.addObject("discountPercentage",coupon.getDiscountPercentage());
         }
         return modelAndView;
     }
@@ -81,16 +84,20 @@ public class MainController {
         invoice.setSeller(seller);
 
         List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
+        Coupon coupon=invoice.getCoupon();
+        coupon=(coupon!=null)? coupon:new Coupon();
 
         BigDecimal initialPrice = computeInitialPrice(invoiceItems);
-        BigDecimal discountedPrice = computeDiscountedPrice(initialPrice, new Coupon());
+        BigDecimal discountedPrice = computeDiscountedPrice(initialPrice,coupon);
 
         invoice.setInitialPrice(initialPrice);
         invoice.setDiscountedPrice(discountedPrice);
 
+        request.getSession().setAttribute("invoice",invoice);
+
         modelAndView.addObject("invoice", invoice);
         modelAndView.addObject("seller", seller);
-        modelAndView.addObject("coupon", new Coupon());
+        modelAndView.addObject("coupon", coupon);
         modelAndView.addObject("invoiceItems", invoiceItems);
 
         return modelAndView;
@@ -145,7 +152,7 @@ public class MainController {
             int boughtQty=item.getQuantity();
             int newStock=stock-boughtQty;
             product.setStock(newStock);
-            productService.saveProduct(product);
+            productService.updateProduct(product);
         }
     }
 
