@@ -19,15 +19,19 @@
                         <p class="checkout__date"><span th:text="${invoice.purchaseDate}" /></p>
                     </div>
                     <h1 class="checkout__intro">Invoice nr. <span th:text="${invoice.id}"></span></h1>
-                    <p>List of Products:</p>
                     <ul class="checkout__list">
+                        <h4 class="list__intro">List of Products</h4>
                         <th:block th:each="item :${invoiceItems}">
                             <li class="checkout__item">
-                                <span th:text="${item.quantity}+' x '" />
-                                <span th:text="${item.product.name}+' '" />
-                                <span th:text="'- '+${item.product.price}+' RON'" />
-                                <span th:text="'---- Computed Price: '+${item.quantity*item.product.price}+' RON'" />
-                                <br>
+                                <div class="checkout__column">
+                                    <span th:text="${item.quantity}+' x '" />
+                                    <span th:text="${item.product.name}+' '" />
+                                    <span th:text="'- '+${item.product.price}+' RON'" />
+                                </div>
+                                <div class="checkout__column -right">
+                                    <span>---- Computed Price:</span>
+                                    <span th:text="${item.quantity*item.product.price}+ ' RON'" />
+                                </div>
                             </li>
                         </th:block>
                     </ul>
@@ -40,8 +44,8 @@
                     
                     
                     <!--TODO REPLACE WITH BETTER URL-->
-                    <a href="/needBetterUrlForThis" style="color: #FF1C19;">
-                        PROCEED
+                    <a class="checkout__link" href="/needBetterUrlForThis">
+                        Proceed
                     </a>
                 </div>
             </div>
