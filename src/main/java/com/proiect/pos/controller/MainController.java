@@ -1,5 +1,6 @@
 package com.proiect.pos.controller;
 
+import com.proiect.pos.model.Product;
 import com.proiect.pos.model.*;
 import com.proiect.pos.service.CouponService;
 import com.proiect.pos.service.InvoiceService;
@@ -9,10 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Null;
 import java.math.BigDecimal;
@@ -23,7 +30,6 @@ import java.util.Map;
 
 @Controller
 public class MainController {
-
 
     @Autowired
     private ProductService productService;
@@ -98,6 +104,16 @@ public class MainController {
     }
 
 
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public Model getDashboardPage(Model model)
+    {
+        if (!model.containsAttribute("product"))
+        {
+            model.addAttribute("product", new Product());
+        }
+
+        return model;
+    }
     private BigDecimal computeDiscountedPrice(BigDecimal initialPrice, Coupon coupon) {
 
         BigDecimal discountedPrice = initialPrice;
