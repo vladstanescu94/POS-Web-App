@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 
@@ -19,31 +21,27 @@ public class AdminController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "addproduct", method = RequestMethod.GET)
-    public ModelAndView getAddProductPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        Product product = new Product();
-        modelAndView.addObject("product", product);
-        modelAndView.setViewName("admin/addproduct");
+    @RequestMapping(value = "addNewProduct", method = RequestMethod.POST)
+    public ModelAndView addNewProduct(@Valid Product product, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/dashboard");
+        Product productExists = productService.findById(product.getId());
+        if (productExists != null)
+        {
+            bindingResult.rejectValue("id", "error.product", "There's already a product with this barcode");
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.product", bindingResult);
+            redirectAttributes.addFlashAttribute("product", product);
+        }
+
+        if (!bindingResult.hasErrors())
+        {
+            productService.saveProduct(product);
+            redirectAttributes.addFlashAttribute("successMessage", "Product has been added successfully");
+            redirectAttributes.addFlashAttribute("product", new Product());
+            return modelAndView;
+        }
+        redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.product", bindingResult);
+        redirectAttributes.addFlashAttribute("product", product);
         return modelAndView;
     }
 
-    @RequestMapping(value = "addproduct", method = RequestMethod.POST)
-    public ModelAndView createNewProduct(@Valid Product product, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
-        Product productExists = productService.findById(product.getId());
-        if (productExists != null) {
-            bindingResult.rejectValue("id", "error.product",
-                    "There's already a product with this barcode");
-        }
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("admin/addproduct");
-        } else {
-            productService.saveProduct(product);
-            modelAndView.addObject("successMessage", "Product has been added successfully");
-            modelAndView.addObject("product", new Product());
-            modelAndView.setViewName("admin/addproduct");
-        }
-        return modelAndView;
-    }
 }
