@@ -4,13 +4,6 @@
 <head th:replace="fragments/head"/>
 
 <body>
-
-<script th:inline="javascript">
-    var products = /*[[${value}]]*/ null;
-    console.log(products);
-</script>
-
-
 <script id="productItem" type="text/x-handlebars-template">
     <li class="product">
         <img src="{{{image}}}" alt="picture of product" class="product__image">
