@@ -29,12 +29,19 @@ public class ProductController {
         Product product = productService.findById(id);
 
         if (product != null) {
+            if (product.getStock() <= 0) {
+                return null;
+            }
+
             Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
             List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
             boolean itemNotFound = true;
             for (InvoiceItem item : invoiceItems) {
                 int itemId = item.getProduct().getId();
                 if (itemId == id) {
+                    if(product.getStock()==item.getQuantity()){
+                        return null;
+                    }
                     int itemQty = item.getQuantity();
                     item.setQuantity(itemQty + 1);
                     itemNotFound = false;
@@ -59,7 +66,7 @@ public class ProductController {
         Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
         List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
         for (InvoiceItem item : invoiceItems) {
-            Product product=item.getProduct();
+            Product product = item.getProduct();
             int productId = product.getId();
             if (id == productId) {
                 invoiceItems.remove(item);
