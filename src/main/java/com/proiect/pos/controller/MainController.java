@@ -117,6 +117,7 @@ public class MainController {
     public String finalizeTransaction(HttpServletRequest request) {
         Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
         invoiceService.saveInvoice(invoice);
+        request.getSession().setAttribute("invoice",new Invoice());
         return "home";
     }
 
