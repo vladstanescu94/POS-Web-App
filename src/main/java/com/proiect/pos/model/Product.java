@@ -22,7 +22,7 @@ public class Product {
     @Min(1)
     private int stock;
 
-    @NotEmpty(message = "Please provide the price of the product")
+//    @NotEmpty(message = "Please provide the price of the product")
     @DecimalMin("0.01")
     private BigDecimal price;
 

@@ -18,31 +18,19 @@ public class Invoice {
 
     private Date purchaseDate;
 
-    @Column(name="seller_id")
-    private int sellerId;
-
-    @Column(name="coupon_id")
-    private int couponId;
-
     private BigDecimal initialPrice = BigDecimal.ZERO;
 
     private BigDecimal discountedPrice = BigDecimal.ZERO;
 
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<InvoiceItem> invoiceItems = new ArrayList<>();
 
-    //TODO REMOVE THIS
-    @Transient
-    Map<Integer,Integer> shoppingCart=new HashMap<>();
-
-
-    @OneToMany(mappedBy = "invoice",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<InvoiceItem> invoiceItems=new ArrayList<>();
-
-    @OneToOne
-    @JoinColumn(name="seller_id", insertable = false, updatable = false)
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "seller_id")
     private Seller seller;
 
-    @OneToOne
-    @JoinColumn(name="coupon_id",insertable = false,updatable = false)
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "coupon_id")
     private Coupon coupon;
 
 

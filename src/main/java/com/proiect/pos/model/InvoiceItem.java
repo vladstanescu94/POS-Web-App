@@ -15,21 +15,15 @@ public class InvoiceItem {
 
     @Id
     private int id;
-
-    @Column(name="invoice_id")
-    private int invoiceId;
-
-    @Column(name="product_id")
-    private Integer productId;
-
+    
     private int quantity;
 
     @ManyToOne
-    @JoinColumn(name="invoice_id", insertable = false, updatable = false)
+    @JoinColumn(name="invoice_id")
     private Invoice invoice;
 
     @ManyToOne
-    @JoinColumn(name="product_id", insertable = false, updatable = false)
+    @JoinColumn(name="product_id")
     private Product product;
 
 

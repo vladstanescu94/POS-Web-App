@@ -47,6 +47,7 @@ public class ProductController {
                 InvoiceItem item = new InvoiceItem();
                 item.setQuantity(1);
                 item.setProduct(product);
+                item.setInvoice(invoice);
                 invoiceItems.add(item);
             }
             request.getSession().setAttribute("invoice", invoice);

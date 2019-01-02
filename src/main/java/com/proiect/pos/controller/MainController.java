@@ -1,6 +1,7 @@
 package com.proiect.pos.controller;
 
 import com.proiect.pos.model.*;
+import com.proiect.pos.service.InvoiceService;
 import com.proiect.pos.service.ProductService;
 import com.proiect.pos.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Null;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +30,9 @@ public class MainController {
     @Autowired
     private SellerService sellerService;
 
+    @Autowired
+    private InvoiceService invoiceService;
+
 
     @RequestMapping(value = "/sale", method = RequestMethod.GET)
     public ModelAndView getSaleWebPage(HttpServletRequest request) {
@@ -37,16 +42,9 @@ public class MainController {
             request.getSession().setAttribute("invoice", new Invoice());
         } else {
             modelAndView.addObject("value", invoice);
-            List<Product> products = new ArrayList<>();
-            Map<Integer, Integer> productsMap = invoice.getShoppingCart();
-
             List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
-            for (InvoiceItem item : invoiceItems) {
-                products.add(item.getProduct());
-            }
             modelAndView.addObject("invoiceItems", invoiceItems);
         }
-//            modelAndView.setViewName("sale");
         return modelAndView;
     }
 
@@ -67,23 +65,20 @@ public class MainController {
             return new ModelAndView("redirect:/sale");
         }
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("quantity", invoice.getShoppingCart());
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Seller seller = sellerService.findByUsername(user.getUsername());
         invoice.setId(System.currentTimeMillis() / 1000);
         invoice.setPurchaseDate(new Date());
-//        invoice.setSellerId(seller.getId());
-
-        List<Product> products = new ArrayList<>();
-        Map<Integer, Integer> productsMap = invoice.getShoppingCart();
+        invoice.setSeller(seller);
         BigDecimal initialPrice = BigDecimal.ZERO;
-        for (Map.Entry<Integer, Integer> entry : productsMap.entrySet()) {
-            Product product = productService.findById(entry.getKey());
-            BigDecimal qty = new BigDecimal(entry.getValue());
-            BigDecimal price = product.getPrice();
-            initialPrice = initialPrice.add(price.multiply(qty));
-            products.add(product);
+        List<InvoiceItem>invoiceItems=invoice.getInvoiceItems();
+        for(InvoiceItem item: invoiceItems)
+        {
+            BigDecimal qty=new BigDecimal(item.getQuantity());
+            BigDecimal price=item.getProduct().getPrice();
+            initialPrice=initialPrice.add(price.multiply(qty));
         }
+
         BigDecimal discountedPrice = initialPrice;
         invoice.setDiscountedPrice(discountedPrice);
         invoice.setInitialPrice(initialPrice);
@@ -92,9 +87,17 @@ public class MainController {
         modelAndView.addObject("invoice", invoice);
         modelAndView.addObject("seller", seller);
         modelAndView.addObject("coupon", new Coupon());
-        modelAndView.addObject("products", products);
+        modelAndView.addObject("invoiceItems", invoiceItems);
 
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/needBetterUrlForThis",method = RequestMethod.GET)
+    public String finalizeTransaction(HttpServletRequest request)
+    {
+        Invoice invoice=(Invoice)request.getSession().getAttribute("invoice");
+        invoiceService.saveInvoice(invoice);
+        return "home";
     }
 
 }
