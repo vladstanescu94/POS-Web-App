@@ -652,5 +652,27 @@ a {
 .modal__input.-date {
   padding-left: 2.5rem;
 }
+.checkout__container {
+  width: 60%;
+  height: 90vh;
+  padding: 0.875rem 1.125rem;
+  background-color: #fff;
+  box-shadow: 0 0 0.5rem 0 #7c7c7c;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.checkout__intro {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 2.25rem;
+  text-align: center;
+  padding: 1.25rem 0.625rem;
+  margin: 0.9375rem 0;
+}
+.checkout__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 /*# sourceMappingURL=main.css.map */
