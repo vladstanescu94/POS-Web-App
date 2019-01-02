@@ -37,8 +37,10 @@ public class AdminController {
             productService.saveProduct(product);
             redirectAttributes.addFlashAttribute("successMessage", "Product has been added successfully");
             redirectAttributes.addFlashAttribute("product", new Product());
-
+            return modelAndView;
         }
+        redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.product", bindingResult);
+        redirectAttributes.addFlashAttribute("product", product);
         return modelAndView;
     }
 
