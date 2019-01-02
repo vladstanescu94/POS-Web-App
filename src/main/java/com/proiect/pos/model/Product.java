@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -21,9 +22,9 @@ public class Product {
     @Min(1)
     private int stock;
 
-    @NotNull(message = "Please provide the price of the product")
+//    @NotEmpty(message = "Please provide the price of the product")
     @DecimalMin("0.01")
-    private double price;
+    private BigDecimal price;
 
     private String image = "-1";
 }
