@@ -14,24 +14,24 @@ import java.util.*;
 public class Invoice {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private Date purchaseDate;
+    private Date purchaseDate = new Date();
 
     private BigDecimal initialPrice = BigDecimal.ZERO;
 
     private BigDecimal discountedPrice = BigDecimal.ZERO;
 
-    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "invoice",cascade = CascadeType.ALL)
     private List<InvoiceItem> invoiceItems = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne()
     @JoinColumn(name = "seller_id")
     private Seller seller;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne()
     @JoinColumn(name = "coupon_id")
     private Coupon coupon;
-
 
 }

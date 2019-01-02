@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @Getter
@@ -14,8 +12,9 @@ import java.util.Map;
 public class InvoiceItem {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     private int quantity;
 
     @ManyToOne

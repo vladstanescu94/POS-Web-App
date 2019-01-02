@@ -19,6 +19,6 @@ public class Coupon {
 
     private Date expiryDate;
 
-    private int discountPercentage;
+    private int discountPercentage=0;
 
 }
