@@ -117,8 +117,20 @@ public class MainController {
     public String finalizeTransaction(HttpServletRequest request) {
         Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
         invoiceService.saveInvoice(invoice);
+        updateProductsStock(invoice.getInvoiceItems());
         request.getSession().setAttribute("invoice",new Invoice());
         return "home";
+    }
+
+    private void updateProductsStock(List<InvoiceItem> invoiceItems) {
+        for (InvoiceItem item:invoiceItems) {
+            Product product=item.getProduct();
+            int stock=product.getStock();
+            int boughtQty=item.getQuantity();
+            int newStock=stock-boughtQty;
+            product.setStock(newStock);
+            productService.saveProduct(product);
+        }
     }
 
 }
