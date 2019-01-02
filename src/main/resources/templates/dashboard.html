@@ -14,7 +14,7 @@
                           method="post" class="form-add-product" role="form">
                         <div class="form-add-product__wrapper">
                             <div class="form-add-product__group">
-                                <input type="number" th:field="*{id}" placeholder="Product barcode" class="form-add-product__input" />
+                                <input type="number" step="any" min="0" th:field="*{id}" placeholder="Product barcode" class="form-add-product__input" />
                                 <label th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="validation-message"></label>
                             </div>
                             <div class="form-add-product__group">
@@ -24,10 +24,10 @@
 
                             <div class="form-add-product__group">
                                 <label th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="validation-message"></label>
-                                <input type="number" th:field="*{stock}" placeholder="Stock available" class="form-add-product__input" />
+                                <input type="number" step="any" min="0" th:field="*{stock}" placeholder="Stock available" class="form-add-product__input" />
                             </div>
                             <div class="form-add-product__group">
-                                <input type="number" th:field="*{price}" placeholder="Price" class="form-add-product__input" />
+                                <input type="number" step="any" min="0" th:field="*{price}" placeholder="Price" class="form-add-product__input" />
                                 <label th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="validation-message"></label>
                             </div>
 
