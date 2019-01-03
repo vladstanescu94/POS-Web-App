@@ -56,16 +56,7 @@ public class MainController {
         }
         return modelAndView;
     }
-
-
-    @RequestMapping(value = "/allProducts", method = RequestMethod.GET)
-    public ModelAndView showAllProducts() {
-        ModelAndView modelAndView = new ModelAndView();
-        Product[] products = productService.findAllByStockGreaterThanEqual(1);
-        modelAndView.addObject("products", products);
-        return modelAndView;
-    }
-
+    
 
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)
     public ModelAndView proceedToCheckout(HttpServletRequest request) {
@@ -105,14 +96,18 @@ public class MainController {
 
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public Model getDashboardPage(Model model)
+    public ModelAndView getDashboardPage(Model model)
     {
+        ModelAndView modelAndView = new ModelAndView();
         if (!model.containsAttribute("product"))
         {
             model.addAttribute("product", new Product());
         }
 
-        return model;
+        Product[] products = productService.findAllByStockGreaterThanEqual(1);
+        modelAndView.addObject("products", products);
+
+        return modelAndView;
     }
     private BigDecimal computeDiscountedPrice(BigDecimal initialPrice, Coupon coupon) {
 
