@@ -211,6 +211,7 @@ function getDiscount(){
 
 function checkCoupon(){
     var input = document.getElementsByClassName("modal__input")[0];
+    var applyBtn = document.getElementsByClassName("js-apply-coupon")[0];
     var code=input.value;
     if (code !== '') {
         $.get("/coupon/check", {
@@ -219,16 +220,11 @@ function checkCoupon(){
             if (data !== '') {
                 if(data>0)
                 {
-                    console.log(data);
-                    // At first apply button should be greyed out & disabled
-
-                    // TODO
-                    // Should enable Apply button
-                    // Should make itself green indicating coupon is valid
+                    applyBtn.disabled = false;
+                    applyBtn.style.background = "green";
                 }
                 else{
-                    // TODO
-                    // Should make itself red
+                    applyBtn.style.background = "red";
                 }
             } else {
                 alert("There was an error");

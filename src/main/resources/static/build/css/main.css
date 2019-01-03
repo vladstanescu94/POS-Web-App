@@ -71,6 +71,9 @@ a {
     width: 6.8vw;
   }
 }
+.btn.-disabled {
+  background: #666;
+}
 .btn.-tiny {
   padding: 0;
   width: 10vw;
