@@ -184,10 +184,10 @@ function setQuantity(){
 
 function computePrices() {
     var price=totalSumOfProducts();
-    document.getElementsByClassName("subtotal__value")[0].innerHTML=price+" RON";
+    document.getElementsByClassName("subtotal__value")[0].innerHTML= parseFloat(price.toFixed(2)) +" RON";
     var discount=getDiscount();
     var discountedPrice=(1-discount/100)*price;
-    document.getElementsByClassName("total__value")[0].innerHTML=discountedPrice+" RON";
+    document.getElementsByClassName("total__value")[0].innerHTML= parseFloat(discountedPrice.toFixed(2)) +" RON";
 }
 
 function totalSumOfProducts(){
