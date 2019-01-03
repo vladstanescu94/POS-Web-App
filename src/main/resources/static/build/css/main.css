@@ -55,6 +55,8 @@ a {
   color: #fff;
   background-color: #333;
   border: none;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .btn:focus {
   outline: 0.0625rem solid rgba(0,0,0,0.2);
@@ -72,6 +74,9 @@ a {
   }
 }
 .btn.-disabled {
+  background: #666;
+}
+.btn.-disabled:hover {
   background: #666;
 }
 .btn.-tiny {
@@ -93,6 +98,9 @@ a {
     width: 13.7vw;
   }
 }
+.btn:hover {
+  background-color: #000;
+}
 .btn-minus {
   width: 1.25rem;
   height: 1.25rem;
@@ -102,6 +110,10 @@ a {
   font-size: 1rem;
   margin-right: 0.25rem;
   padding: 0;
+  cursor: pointer;
+}
+.btn-minus:hover {
+  background: none;
 }
 .btn-plus {
   max-width: 1.25rem;
@@ -112,6 +124,10 @@ a {
   font-size: 1rem;
   margin-left: 0.25rem;
   padding: 0;
+  cursor: pointer;
+}
+.btn-plus:hover {
+  background: none;
 }
 .btn-signup {
   display: block;
@@ -123,9 +139,14 @@ a {
   color: #fff;
   font-size: 1.5rem;
   text-decoration: none;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .btn-signup.-extraMargin {
   margin-bottom: 1.25rem;
+}
+.btn-signup:hover {
+  background-color: #000;
 }
 .btn-delete {
   width: auto;
@@ -133,6 +154,8 @@ a {
   background: none;
   color: #df6060;
   padding: 0;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .btn-delete.-small {
   width: 4vw;
@@ -142,11 +165,21 @@ a {
   line-height: 0;
   border: 0.0625rem solid #fff;
 }
+.btn-delete.-small:hover {
+  background-color: #f00;
+}
 .btn-delete.-huge {
   width: 10vw;
   color: #fff;
   background-color: #df6060;
   font-size: 1.8vh;
+}
+.btn-delete.-huge:hover {
+  background-color: #f00;
+}
+.btn-delete.-trashcan:hover {
+  background: none;
+  color: #f00;
 }
 .btn-confirm {
   width: 100%;
@@ -154,6 +187,8 @@ a {
   background-color: #6cc36e;
   color: #fff;
   font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .btn-confirm.-extra {
   width: 100%;
@@ -161,6 +196,9 @@ a {
   padding: 0;
   border: 0.0625rem solid #fff;
   font-size: 1.125rem;
+}
+.btn-confirm:hover {
+  background-color: #008000;
 }
 .btn-cart {
   width: 4vw;
@@ -172,6 +210,11 @@ a {
   text-align: center;
   padding-right: 0.625rem;
   padding-bottom: 0.125rem;
+  transition: color 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+.btn-cart:hover {
+  color: #008000;
 }
 .header {
   display: flex;
