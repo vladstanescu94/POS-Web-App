@@ -159,6 +159,17 @@ a {
   border: 0.0625rem solid #fff;
   font-size: 1.125rem;
 }
+.btn-cart {
+  width: 4vw;
+  height: 8vh;
+  font-size: 2.625rem;
+  color: #6cc36e;
+  background: none;
+  border: none;
+  text-align: center;
+  padding-right: 0.625rem;
+  padding-bottom: 0.125rem;
+}
 .header {
   display: flex;
   flex-direction: column;

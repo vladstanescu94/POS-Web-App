@@ -21,7 +21,7 @@ function updateList(products) {
 
     if(products.length===0)
     {
-        document.getElementsByClassName("products__list -dashboard")[0].innerHTML = "PLM NOTHING TO SHOW";
+        document.getElementsByClassName("products__list -dashboard")[0].innerHTML = "NOTHING TO SHOW";
     }
 
     var htmlToBeCompiled = document.getElementById('productItem').innerHTML;
