@@ -4,6 +4,33 @@
 <head th:replace="fragments/head" />
 
 <body>
+    <script th:inline="javascript">
+        var products = /*[[${products}]]*/ null;
+                console.log(products);
+            </script>
+
+    <script id="productItem" type="text/x-handlebars-template">
+        <li class="product">
+        <img src="{{{image}}}" alt="picture of product" class="product__image">
+        <div class="product__data">
+            <h2 class="product__title">
+                {{{name}}}
+            </h2>
+            <h4 class="product__code">BARCODE:{{{id}}} </h4>
+        </div>
+        <div class="product__quantity">
+            <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
+            <input class="quantity__input" type="text" name="quantity" value="1">
+            <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
+        </div>
+        <div class="product__price">
+            <p class="price__label">Price</p>
+            <p class="price__value">{{{price}}}</p>
+        </div>
+        <button class="btn btn-delete far fa-trash-alt"></button>
+    </li>
+</script>
+
     <div class="app-container">
         <header th:replace="fragments/navbar ::header" />
         <div class="main">
@@ -48,8 +75,25 @@
                             <span th:utext="${successMessage}"></span>
                         </form>
                         <ul class="products__list -dashboard">
-                            <li class="product">
-                            </li>
+                            <th:block th:each="product :${products}">
+                                <li class="product">
+                                    <img th:src="${product.image}" alt="picture of product" class="product__image">
+                                    <div class="product__data">
+                                        <h2 class="product__title" th:text="${product.name}" />
+                                        <h4 class="product__code" th:text="'BARCODE:'+${product.id}" />
+                                    </div>
+                                    <div class="product__quantity">
+                                        <button class="btn btn-minus fas fa-minus" type="button" name="minus"></button>
+                                        <input class="quantity__input" type="text" name="quantity" value="1">
+                                        <button class="btn btn-plus fas fa-plus" type="button" name="plus"></button>
+                                    </div>
+                                    <div class="product__price">
+                                        <p class="price__label">Price</p>
+                                        <p class="price__value" th:text="${product.price}" />
+                                    </div>
+                                    <button class="btn-cart fas fa-cart-plus"></button>
+                                </li>
+                            </th:block>
                         </ul>
                     </div>
                     <div class="action">
@@ -65,7 +109,7 @@
                                     <div class="modal__action-wrapper">
                                         <button class="btn -small js-confirm-coupon" type="submit">Add</button>
                                     </div>
-                                    <label id="coupon-message"/>
+                                    <label id="coupon-message" />
                                 </div>
                             </div>
                         </div>
@@ -84,6 +128,7 @@
     <div th:replace="fragments/footer :: footer" />
     <script th:src="@{/build/js/addProduct.js}"></script>
     <script th:src="@{/build/js/addCoupon.js}"></script>
+    <script th:src="@{/build/js/allProducts.js}"></script>
 </body>
 
 </html>

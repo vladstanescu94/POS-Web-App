@@ -22,7 +22,7 @@
             <p class="price__label">Price</p>
             <p class="price__value">{{{price}}}</p>
         </div>
-        <button class="btn btn-delete far fa-trash-alt"></button>
+        <button class="btn btn-delete -trashcan far fa-trash-alt"></button>
     </li>
 </script>
 
@@ -51,7 +51,7 @@
                                     <p class="price__label">Price</p>
                                     <p class="price__value" th:text="${item.product.price}"/>
                                 </div>
-                                <button class="btn btn-delete far fa-trash-alt"></button>
+                                <button class="btn btn-delete -trashcan far fa-trash-alt"></button>
                             </li>
                         </th:block>
                     </ul>
@@ -65,7 +65,7 @@
                                 <input class="modal__input" name="coupon-code" type="text" placeholder="Insert Coupon Code" required>
                                 <div class="modal__action-wrapper">
                                     <button class="btn -small js-check" onclick="checkCoupon()">Check</button>
-                                    <button class="btn -small js-apply-coupon" onclick="applyCoupon()">Apply</button>
+                                    <button class="btn -small -disabled js-apply-coupon" onclick="applyCoupon()" disabled>Apply</button>
                                 </div>
                             </div>
                         </div>

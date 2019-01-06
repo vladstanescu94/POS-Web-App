@@ -10,12 +10,8 @@
             <li class="list__item">
                 <a href="/sale" class="item__link js-new-sale">
                     <i class="item__icon fas fa-shopping-basket"></i>
-                    <p class="item__title">New Sale</p>
-                </a>
-            </li>
-            <li class="list__item">
-                <a href="/allProducts" class="item__link js-new-sale">
-                    <p class="item__title">ALL PRODUCTS</p>
+                    <p th:if="${session.invoice}" class="item__title">Current Sale</p>
+                    <p th:unless="${session.invoice}" class="item__title">New Sale</p>
                 </a>
             </li>
         </ul>

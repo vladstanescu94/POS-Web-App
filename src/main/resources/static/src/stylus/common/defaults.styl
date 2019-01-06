@@ -62,6 +62,8 @@ a {
   color: white;
   background-color: $color-2;
   border: none;
+  cursor: pointer;
+  transition: transition-custom($property = all);
 
 
   &:focus {
@@ -77,6 +79,14 @@ a {
 
     @media screen and (max-device-height: $tablet) {
         width: 6.8vw;
+    }
+  }
+
+  &.-disabled {
+    background: #666;
+
+    &:hover {
+      background: #666;
     }
   }
 
@@ -99,6 +109,10 @@ a {
         width: 13.7vw;
     }
   }
+
+  &:hover {
+    background-color: black;
+  }
 }
 
 .btn-minus {
@@ -110,6 +124,11 @@ a {
   font-size: rem(16);
   margin-right: rem(4);
   padding: 0;
+  cursor: pointer;
+
+  &:hover {
+    background: none;
+  }
 }
 
 .btn-plus {
@@ -121,6 +140,11 @@ a {
   font-size: rem(16);
   margin-left: rem(4);
   padding: 0;
+  cursor: pointer;
+
+  &:hover {
+    background: none;
+  }
 }
 
 .btn-signup {
@@ -133,9 +157,15 @@ a {
   color: white;
   font-size: rem(24);
   text-decoration: none;
+  cursor: pointer;
+  transition: transition-custom($property = all);
 
   &.-extraMargin {
     margin-bottom: rem(20);
+  }
+
+  &:hover {
+    background-color: black;
   }
 
 }
@@ -146,6 +176,8 @@ a {
   background: none;
   color: $color-7;
   padding: 0;
+  cursor: pointer;
+  transition: transition-custom($property = all);
 
   &.-small {
     width: 4vw;
@@ -154,6 +186,10 @@ a {
     font-size: rem(18);
     line-height: 0;
     border: rem(1) solid white;
+
+    &:hover {
+      background-color: red;
+    }
   }
 
   &.-huge {
@@ -161,7 +197,19 @@ a {
     color: white;
     background-color: $color-7;
     font-size: 1.8vh;
+
+    &:hover {
+      background-color: red;
+    }
   }
+
+   &.-trashcan {
+    &:hover {
+      background: none;
+      color: red;
+    }
+  }
+  
 }
 
 .btn-confirm {
@@ -170,6 +218,8 @@ a {
   background-color: $color-8;
   color: white;
   font-size: rem(24);
+  cursor: pointer;
+  transition: transition-custom($property = all);
 
   &.-extra {
     width: 100%;
@@ -178,4 +228,28 @@ a {
     border: rem(1) solid white;
     font-size: rem(18);
   }
+
+  &:hover {
+    background-color: green;
+  }
+}
+
+.btn-cart {
+
+  width: 4vw;
+  height: 8vh;
+  font-size: rem(42);
+  color: $color-8;
+  background: none;
+  border: none;
+  text-align: center;
+  padding-right: rem(10);
+  padding-bottom: rem(2);
+  transition: transition-custom($property = color);
+  cursor: pointer;
+
+  &:hover{
+    color: green;
+  }
+
 }
