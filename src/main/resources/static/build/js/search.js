@@ -14,6 +14,7 @@ function getMatchingProducts(textToBeMatched) {
         }
     });
     return matchingProducts;
+    
 }
 
 function updateList(products) {
@@ -28,6 +29,6 @@ function updateList(products) {
     var template = Handlebars.compile(htmlToBeCompiled);
     products.forEach((product, index) => {
         var context = template(product);
-        $('.products__list -dashboard').append(context);
+        $('.products__list').append(context);
     });
 }

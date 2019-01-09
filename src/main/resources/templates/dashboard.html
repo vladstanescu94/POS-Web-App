@@ -27,13 +27,14 @@
             <p class="price__label">Price</p>
             <p class="price__value">{{{price}}}</p>
         </div>
-        <button class="btn btn-delete far fa-trash-alt"></button>
+        <button class="btn-cart fas fa-cart-plus"></button>
     </li>
 </script>
 
     <div class="app-container">
         <header th:replace="fragments/navbar ::header" />
         <div class="main">
+            <input name="searchBox" id="searchBox" placeholder="Search Products" oninput="searchProducts()"/>
             <div class="container">
                 <div class="wrapper">
                     <div class="products__container -dashboard">
@@ -128,7 +129,7 @@
     <div th:replace="fragments/footer :: footer" />
     <script th:src="@{/build/js/addProduct.js}"></script>
     <script th:src="@{/build/js/addCoupon.js}"></script>
-    <script th:src="@{/build/js/allProducts.js}"></script>
+    <script th:src="@{/build/js/search.js}"></script>
 </body>
 
 </html>
