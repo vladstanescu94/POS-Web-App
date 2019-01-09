@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="ADD_coupon" author="Adrian">
+        <insert tableName="coupon">
+            <column name="id" value="1"/>
+            <column name="code" value="1"/>
+            <column name="discount_percentage" value="5"/>
+            <column name="expiry_date" value="20190120"/>
+        </insert>
+        <insert tableName="coupon">
+            <column name="id" value="2"/>
+            <column name="code" value="2"/>
+            <column name="discount_percentage" value="10"/>
+            <column name="expiry_date" value="20190120"/>
+        </insert>
+        <insert tableName="coupon">
+            <column name="id" value="3"/>
+            <column name="code" value="3"/>
+            <column name="discount_percentage" value="15"/>
+            <column name="expiry_date" value="20190120"/>
+        </insert>
+        <insert tableName="coupon">
+            <column name="id" value="4"/>
+            <column name="code" value="4"/>
+            <column name="discount_percentage" value="50"/>
+            <column name="expiry_date" value="20190120"/>
+        </insert>
+        <insert tableName="coupon">
+            <column name="id" value="5"/>
+            <column name="code" value="5"/>
+            <column name="discount_percentage" value="90"/>
+            <column name="expiry_date" value="20190120"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
