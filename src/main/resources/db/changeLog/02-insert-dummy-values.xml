@@ -34,71 +34,71 @@
     <changeSet id="ADD_product" author="Stefan">
         <insert tableName="product">
             <column name="id" value="1"/>
-            <column name="name" value="XBOX ONE THE BEST"/>
+            <column name="name" value="Consola Xbox One"/>
             <column name="price" value="1650"/>
             <column name="stock" value="1"/>
             <column name="image" value="/media/-1.png"/>
         </insert>
         <insert tableName="product">
             <column name="id" value="2"/>
-            <column name="name" value="CEAPA"/>
+            <column name="name" value="Mere Yonatan"/>
             <column name="price" value="4.73"/>
-            <column name="stock" value="4"/>
+            <column name="stock" value="58"/>
             <column name="image" value="/media/-1.png"/>
         </insert>
         <insert tableName="product">
             <column name="id" value="3"/>
-            <column name="name" value="MOUSE"/>
+            <column name="name" value="Mouse Razer"/>
             <column name="price" value="69.99"/>
-            <column name="stock" value="2"/>
+            <column name="stock" value="8"/>
             <column name="image" value="/media/-1.png"/>
         </insert>
         <insert tableName="product">
             <column name="id" value="4"/>
-            <column name="name" value="SARMALE"/>
+            <column name="name" value="Set Creioane HB"/>
             <column name="price" value="2"/>
             <column name="stock" value="100"/>
             <column name="image" value="/media/-1.png"/>
         </insert>
         <insert tableName="product">
             <column name="id" value="5"/>
-            <column name="name" value="LAPTOP"/>
+            <column name="name" value="Laptop"/>
             <column name="price" value="5387.99"/>
-            <column name="stock" value="2"/>
+            <column name="stock" value="4"/>
             <column name="image" value="/media/-1.png"/>
         </insert>
         <insert tableName="product">
             <column name="id" value="6"/>
-            <column name="name" value="MONITOR LCD"/>
+            <column name="name" value="Monitor LCD"/>
             <column name="price" value="699.12"/>
             <column name="stock" value="3"/>
             <column name="image" value="/media/-1.png"/>
         </insert>
         <insert tableName="product">
             <column name="id" value="7"/>
-            <column name="name" value="CD MANELE 'GUTA E VIATA MEA'"/>
+            <column name="name" value="CD Colinde Stefan Hrusca"/>
             <column name="price" value="9.99"/>
-            <column name="stock" value="1000"/>
+            <column name="stock" value="100"/>
             <column name="image" value="/media/-1.png"/>
         </insert>
         <insert tableName="product">
             <column name="id" value="8"/>
-            <column name="name" value="SUBSCRIPTIE PORNHUB"/>
+            <column name="name" value="Agenda"/>
             <column name="price" value="4.9"/>
-            <column name="stock" value="50"/>
+            <column name="stock" value="20"/>
             <column name="image" value="/media/-1.png"/>
         </insert>
         <insert tableName="product">
             <column name="id" value="9"/>
-            <column name="name" value="PAPUSA GONFLABILA PT ADI"/>
-            <column name="price" value="0.01"/>
-            <column name="stock" value="1000"/>
+            <column name="name" value="Papusa Barbie"/>
+            <column name="price" value="30.99"/>
+            <column name="stock" value="10"/>
             <column name="image" value="/media/-1.png"/>
         </insert>
         <insert tableName="product">
             <column name="id" value="10"/>
-            <column name="name" value="MacBook-u' lu' Vlad"/>
-            <column name="price" value="1"/>
+            <column name="name" value="MacBook Pro"/>
+            <column name="price" value="9001"/>
             <column name="stock" value="1"/>
             <column name="image" value="/media/-1.png"/>
         </insert>

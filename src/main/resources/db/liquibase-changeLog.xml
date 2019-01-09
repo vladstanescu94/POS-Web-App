@@ -10,4 +10,5 @@
     <include file="changelog/02-insert-dummy-values.xml" relativeToChangelogFile="true"/>
     <include file="changelog/03-create-coupon-schema.xml" relativeToChangelogFile="true"/>
     <include file="changelog/04-create-invoice-related-schemas.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/05-insert-dummy-coupons.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
