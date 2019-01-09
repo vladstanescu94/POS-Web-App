@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="ADD_coupon" author="Stefan">
+    <changeSet id="ADD_coupon" author="Adrian">
         <insert tableName="coupon">
             <column name="id" value="1"/>
             <column name="code" value="1"/>
